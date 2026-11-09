@@ -1,0 +1,293 @@
+---
+version: alpha
+name: ShopBoard
+description: A calm, bright shop board. Soft gray page, white cards, one blue for every action, one coral for decoration only.
+colors:
+  background: "#EEF0F3"
+  foreground: "#0E1116"
+  card: "#FFFFFF"
+  muted: "#E2E6EE"
+  muted-foreground: "#63666A"
+  subtle-foreground: "#36393E"
+  border: "#CFD1D4"
+  primary: "#3B5BFD"
+  primary-foreground: "#FFFFFF"
+  primary-soft: "#D5DBF4"
+  highlight: "#FF7A59"
+  highlight-foreground: "#0E1116"
+  link: "#294CFD"
+  destructive: "#D92D20"
+  success: "#16A34A"
+typography:
+  hero:
+    fontFamily: Bricolage Grotesque
+    fontSize: 4.4rem
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: -0.01em
+  h1:
+    fontFamily: Bricolage Grotesque
+    fontSize: 2.5rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: -0.01em
+  h2:
+    fontFamily: Bricolage Grotesque
+    fontSize: 2rem
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: -0.01em
+  h3:
+    fontFamily: Bricolage Grotesque
+    fontSize: 1.125rem
+    fontWeight: 700
+    lineHeight: 1.3
+  body-md:
+    fontFamily: Inter
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.6
+  body-sm:
+    fontFamily: Inter
+    fontSize: 0.875rem
+    fontWeight: 400
+    lineHeight: 1.5
+  label:
+    fontFamily: Inter
+    fontSize: 0.875rem
+    fontWeight: 600
+    lineHeight: 1.4
+  eyebrow:
+    fontFamily: Inter
+    fontSize: 0.75rem
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: 0.08em
+  price:
+    fontFamily: Inter
+    fontSize: 1.25rem
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: -0.01em
+  mono:
+    fontFamily: JetBrains Mono
+    fontSize: 0.875rem
+    fontWeight: 400
+    lineHeight: 1.5
+rounded:
+  sm: 10px
+  md: 18px
+  lg: 28px
+  full: 9999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+  tap: 44px
+  header: 64px
+  page-max: 1240px
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.primary-foreground}"
+    typography: "{typography.label}"
+    rounded: "{rounded.md}"
+    padding: 0 20px
+    height: "{spacing.tap}"
+  button-secondary:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: 0 20px
+    height: "{spacing.tap}"
+  button-ghost:
+    backgroundColor: transparent
+    textColor: "{colors.link}"
+    rounded: "{rounded.md}"
+    padding: 0 12px
+    height: "{spacing.tap}"
+  input:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: 10px 14px
+    height: "{spacing.tap}"
+  product-card:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.lg}"
+    padding: 20px
+  panel:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: 20px
+  dialog:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.lg}"
+    padding: 24px
+  cart-badge-count:
+    backgroundColor: "{colors.highlight}"
+    textColor: "{colors.highlight-foreground}"
+    typography: "{typography.eyebrow}"
+    rounded: "{rounded.full}"
+    height: 20px
+  status-message:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.muted-foreground}"
+    rounded: "{rounded.md}"
+    padding: 20px
+---
+
+# ShopBoard design
+
+This file is the source of truth for how ShopBoard looks. The tokens above are normative.
+`app/globals.css` turns them into Tailwind theme variables, and every component uses those
+variables through Tailwind classes. The design is the one from ShopBoard v1
+(`src/styles/style.css`); only the way it is written changed.
+
+## Overview
+
+A light, airy shop page. The page is a soft gray with three blurred color glows behind
+everything (blue top left, coral top right, faint blue bottom right). Content sits on white
+cards with large rounded corners. There is one action color, blue (`primary`). Coral
+(`highlight`) never means "click me": it only decorates (the cart count, gradients).
+
+Motion is short and quiet: things rise 10px and fade in, cards lift 3px on hover. Everything
+stops when the user asks for reduced motion.
+
+## Colors
+
+Each token is a role, not a hue. Use the role, never the hex value.
+
+| Token                | Role                                                       |
+| -------------------- | ---------------------------------------------------------- |
+| `background`         | The page                                                   |
+| `foreground`         | Main text                                                  |
+| `card`               | Cards, panels, inputs, dialogs                             |
+| `muted`              | Hover background, tinted tiles, skeletons                  |
+| `muted-foreground`   | Secondary text: categories, hints, empty states            |
+| `subtle-foreground`  | Labels                                                     |
+| `border`             | Borders and dividers; also the input border                |
+| `primary`            | Every action: primary buttons, focus ring, selection       |
+| `primary-soft`       | A tinted card tile; the placeholder art                    |
+| `highlight`          | Decoration only: the cart count, gradients                 |
+| `link`               | Links, ghost buttons, the keyboard focus outline           |
+| `destructive`        | Errors: an invalid field's border, error messages, toasts  |
+| `success`            | Success messages                                           |
+
+Dark mode follows the system setting (`prefers-color-scheme`), there is no toggle. These
+tokens change in dark mode; the others keep their light value:
+
+| Token               | Dark      |
+| ------------------- | --------- |
+| `background`        | `#0F1014` |
+| `foreground`        | `#EBEBF0` |
+| `card`              | `#18191E` |
+| `muted`             | `#212229` |
+| `muted-foreground`  | `#9A9CA7` |
+| `subtle-foreground` | `#C8C9D0` |
+| `border`            | `#31323A` |
+| `primary`           | `#4D6AFD` |
+| `primary-foreground`| `#0B0B0D` |
+| `primary-soft`      | `#1B2243` |
+| `link`              | `#5F79FD` |
+
+`highlight` stays light in dark mode, so the cart count keeps dark ink
+(`highlight-foreground`).
+
+Colors with transparency are written with Tailwind's opacity modifier on the token
+(`bg-background/80` for the header, `ring-primary/20` for the input focus ring), not as new
+tokens.
+
+## Typography
+
+Three families, all loaded with `next/font/google` in `app/layout.tsx`:
+
+- **Bricolage Grotesque** (display): `h1`, `h2`, `h3`, the hero title, the logo.
+- **Inter** (body): everything else.
+- **JetBrains Mono**: `code`, `kbd`, `pre`.
+
+Headings use `text-wrap: balance`, paragraphs `text-wrap: pretty`. Prices and counts use
+tabular numbers (`tabular-nums`), so they don't shift as they change.
+
+The hero and `h2` sizes are fluid. The tokens give the largest size; the CSS uses:
+
+- hero: `clamp(2.4rem, 5.5vw, 4.4rem)`
+- `h2`: `clamp(1.5rem, 2.4vw, 2rem)`
+- hero text: `clamp(1.05rem, 1.4vw, 1.2rem)`
+
+Inputs use `16px` text, so iOS doesn't zoom in on focus.
+
+## Layout
+
+- The page content is at most `page-max` (1240px) wide, centered, with a side padding of
+  `clamp(16px, 4vw, 40px)`.
+- The header is sticky, at least `header` (64px) tall, with a blurred, 82% opaque
+  `background`.
+- Every clickable thing is at least `tap` (44px) tall and wide.
+- Sections have a vertical padding of `clamp(40px, 7vw, 88px)`; the hero
+  `clamp(56px, 9vw, 112px)`.
+- Mobile first. Breakpoints used: `768px` (`md`), `900px`, `960px`, `1024px` (`lg`).
+- Products page: on `lg` and up, the filters become a sticky 260px sidebar.
+- Product grid: `repeat(auto-fill, minmax(min(100%, 210px), 1fr))`, gap
+  `clamp(16px, 2vw, 24px)`.
+- Checkout: form (max 480px) then summary (max 360px); side by side from 960px.
+
+## Elevation & Depth
+
+Three shadows, all soft and pushed down:
+
+| Token    | Value                                    | Used on                    |
+| -------- | ---------------------------------------- | -------------------------- |
+| `lift`   | `0 18px 40px -18px rgb(14 17 22 / 35%)`  | a product card on hover    |
+| `panel`  | `0 8px 24px -16px rgb(14 17 22 / 35%)`   | the filters sidebar        |
+| `dialog` | `0 30px 80px -20px rgb(0 0 0 / 45%)`     | the sign-up dialog, toasts |
+
+The dialog's backdrop is `rgb(14 17 22 / 55%)` with a 6px blur.
+
+## Shapes
+
+- `rounded.md` (18px) is the default: buttons, inputs, panels, cart lines, messages.
+- `rounded.lg` (28px): product cards, the hero art, dialogs, the sidebar.
+- `rounded.sm` (10px): small inner pieces.
+- `rounded.full`: the cart badge button and its count.
+- The placeholder art inside a card uses `rounded.lg` minus 4px, so it nests.
+
+## Components
+
+- **Buttons**: primary (blue, white text), secondary (white with a `foreground` border),
+  ghost (looks like a nav link, `link` text). All scale to 98% while pressed. A large variant
+  is 48px tall with 26px side padding. Disabled: 50% opacity, `not-allowed` cursor.
+- **Inputs and selects**: `card` background, `border` border, `rounded.md`. On focus: the
+  border turns `primary` and a 4px `primary/20` ring appears. Invalid: `destructive` border.
+- **Product card**: `card` background; every 4n+2 card uses `muted`, every 5n+3 uses
+  `primary-soft` (a bento rhythm). A 4:3 placeholder art on top: a dot grid over a
+  `primary-soft` → `muted` gradient. Hover or focus inside: lift 3px with the `lift` shadow.
+  The product name looks like a heading, not a blue link; it underlines on hover and focus.
+- **Category label** (`eyebrow`): uppercase, `muted-foreground`.
+- **Section title**: a 32×3px `primary` bar above it.
+- **Status and empty messages**: dashed `border`, `card` background, centered
+  `muted-foreground` text.
+- **Skeleton card**: 300px tall, `muted` with a moving light shimmer.
+- **Cart badge**: a 44px round button; the count sits top right on `highlight`.
+- **Dialog**: centered over the blurred backdrop, max 480px wide, pops in.
+- **Toast**: bottom of the screen on mobile, bottom right and 360px wide from `md`.
+  Success uses `primary`, error uses `destructive`.
+- **shadcn/ui fields** (checkout): they use the same tokens, so they look like the rest
+  of the app without extra CSS.
+
+## Do's and Don'ts
+
+- Do use a token through its Tailwind class (`bg-card`, `text-muted-foreground`,
+  `rounded-lg`, `shadow-lift`). Don't write a hex value or an arbitrary color
+  (`bg-[#3b5bfd]`) in a component.
+- Do use `primary` for every action and only for actions. Don't use `highlight` for a
+  button or a link.
+- Do keep every clickable thing at least 44px. Don't make an icon button smaller.
+- Do check a new component in dark mode. Don't add a color that has no dark value.
+- Do respect reduced motion. Don't add an animation longer than 0.5s.
+- Do add a new token here first, then to `app/globals.css`, then use it.
