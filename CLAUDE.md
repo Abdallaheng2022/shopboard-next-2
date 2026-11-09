@@ -62,7 +62,7 @@ The working list for moving v1 to v2. Delete this section in step 10, when it is
 that it would be a stale plan file (see "No AI slop" in `AGENTS.md`).
 
 1. [x] Rules: `AGENTS.md`, `DESIGN.md` and `CLAUDE.md`, one job each
-2. [ ] Tooling: package.json scripts and dependencies, oxlint, Prettier (with the Tailwind
+2. [x] Tooling: package.json scripts and dependencies, oxlint, Prettier (with the Tailwind
        plugin), husky, lint-staged, stricter tsconfig, `.env.example`
 3. [ ] Tailwind + shadcn base: `globals.css` tokens and base styles, `components.json`,
        `lib/utils.ts`, fonts and frame in `app/layout.tsx`, `Button`

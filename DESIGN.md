@@ -163,38 +163,38 @@ stops when the user asks for reduced motion.
 
 Each token is a role, not a hue. Use the role, never the hex value.
 
-| Token                | Role                                                       |
-| -------------------- | ---------------------------------------------------------- |
-| `background`         | The page                                                   |
-| `foreground`         | Main text                                                  |
-| `card`               | Cards, panels, inputs, dialogs                             |
-| `muted`              | Hover background, tinted tiles, skeletons                  |
-| `muted-foreground`   | Secondary text: categories, hints, empty states            |
-| `subtle-foreground`  | Labels                                                     |
-| `border`             | Borders and dividers; also the input border                |
-| `primary`            | Every action: primary buttons, focus ring, selection       |
-| `primary-soft`       | A tinted card tile; the placeholder art                    |
-| `highlight`          | Decoration only: the cart count, gradients                 |
-| `link`               | Links, ghost buttons, the keyboard focus outline           |
-| `destructive`        | Errors: an invalid field's border, error messages, toasts  |
-| `success`            | Success messages                                           |
+| Token               | Role                                                      |
+| ------------------- | --------------------------------------------------------- |
+| `background`        | The page                                                  |
+| `foreground`        | Main text                                                 |
+| `card`              | Cards, panels, inputs, dialogs                            |
+| `muted`             | Hover background, tinted tiles, skeletons                 |
+| `muted-foreground`  | Secondary text: categories, hints, empty states           |
+| `subtle-foreground` | Labels                                                    |
+| `border`            | Borders and dividers; also the input border               |
+| `primary`           | Every action: primary buttons, focus ring, selection      |
+| `primary-soft`      | A tinted card tile; the placeholder art                   |
+| `highlight`         | Decoration only: the cart count, gradients                |
+| `link`              | Links, ghost buttons, the keyboard focus outline          |
+| `destructive`       | Errors: an invalid field's border, error messages, toasts |
+| `success`           | Success messages                                          |
 
 Dark mode follows the system setting (`prefers-color-scheme`), there is no toggle. These
 tokens change in dark mode; the others keep their light value:
 
-| Token               | Dark      |
-| ------------------- | --------- |
-| `background`        | `#0F1014` |
-| `foreground`        | `#EBEBF0` |
-| `card`              | `#18191E` |
-| `muted`             | `#212229` |
-| `muted-foreground`  | `#9A9CA7` |
-| `subtle-foreground` | `#C8C9D0` |
-| `border`            | `#31323A` |
-| `primary`           | `#4D6AFD` |
-| `primary-foreground`| `#0B0B0D` |
-| `primary-soft`      | `#1B2243` |
-| `link`              | `#5F79FD` |
+| Token                | Dark      |
+| -------------------- | --------- |
+| `background`         | `#0F1014` |
+| `foreground`         | `#EBEBF0` |
+| `card`               | `#18191E` |
+| `muted`              | `#212229` |
+| `muted-foreground`   | `#9A9CA7` |
+| `subtle-foreground`  | `#C8C9D0` |
+| `border`             | `#31323A` |
+| `primary`            | `#4D6AFD` |
+| `primary-foreground` | `#0B0B0D` |
+| `primary-soft`       | `#1B2243` |
+| `link`               | `#5F79FD` |
 
 `highlight` stays light in dark mode, so the cart count keeps dark ink
 (`highlight-foreground`).
@@ -241,11 +241,11 @@ Inputs use `16px` text, so iOS doesn't zoom in on focus.
 
 Three shadows, all soft and pushed down:
 
-| Token    | Value                                    | Used on                    |
-| -------- | ---------------------------------------- | -------------------------- |
-| `lift`   | `0 18px 40px -18px rgb(14 17 22 / 35%)`  | a product card on hover    |
-| `panel`  | `0 8px 24px -16px rgb(14 17 22 / 35%)`   | the filters sidebar        |
-| `dialog` | `0 30px 80px -20px rgb(0 0 0 / 45%)`     | the sign-up dialog, toasts |
+| Token    | Value                                   | Used on                    |
+| -------- | --------------------------------------- | -------------------------- |
+| `lift`   | `0 18px 40px -18px rgb(14 17 22 / 35%)` | a product card on hover    |
+| `panel`  | `0 8px 24px -16px rgb(14 17 22 / 35%)`  | the filters sidebar        |
+| `dialog` | `0 30px 80px -20px rgb(0 0 0 / 45%)`    | the sign-up dialog, toasts |
 
 The dialog's backdrop is `rgb(14 17 22 / 55%)` with a 6px blur.
 
