@@ -15,12 +15,18 @@ the same five pages, 404 page, cart, checkout and states, with the design writte
 Tailwind CSS instead of one hand-written CSS file. The behavior must stay exactly the same as
 v1. Only the styling, the folder root and the package manager change.
 
-Read these before any change:
+## The three instruction files
 
-- `node_modules/next/dist/docs/` for Next.js (see the block above).
-- `DESIGN.md` for every color, font, size, radius and shadow. It is the source of truth for
-  how the app looks.
-- The "Migration" section at the end of this file for what is done and what is next.
+Each file has one job. Don't repeat a rule in two files: point to the file that owns it.
+
+| File        | Owns                                                        | Read by          |
+| ----------- | ----------------------------------------------------------- | ---------------- |
+| `AGENTS.md` | How the code is written: stack, structure, code rules       | every agent      |
+| `DESIGN.md` | How the app looks: tokens and visual rules. No code in it   | every agent      |
+| `CLAUDE.md` | How Claude Code works here: imports this file, the workflow | Claude Code only |
+
+Read before any change: `node_modules/next/dist/docs/` for Next.js (see the block above), and
+`DESIGN.md` before any change a user can see.
 
 ## Stack
 
@@ -100,7 +106,10 @@ shared/
 
 - **Tokens come from `DESIGN.md`.** `app/globals.css` declares them once as CSS variables
   (light in `:root`, dark in `@media (prefers-color-scheme: dark)`) and maps them to Tailwind
-  in `@theme inline`. A new token goes into `DESIGN.md` first, then `globals.css`.
+  in `@theme inline`, with the same names. A new token goes into `DESIGN.md` first, then
+  `globals.css`, then a component.
+- **Opacity is a modifier, not a token:** `bg-background/80` (header), `ring-primary/20`
+  (input focus).
 - **shadcn and our components share the same variables.** shadcn's names (`--background`,
   `--primary`, `--muted`, `--border`, `--ring`…) are our token names, so a shadcn component
   looks like ShopBoard with no extra CSS.
@@ -222,23 +231,5 @@ Kept from v1, where each one was measured with 5,000 products and a 300-line car
 - `grep -rn "fetch(" app components modules shared` finds only `shared/api/client.ts`.
 - `grep -rnE "#[0-9a-fA-F]{3,8}\b" app components modules` finds nothing outside
   `app/globals.css`.
-- Keep this file, `DESIGN.md` and `README.md` in sync with the code. Code, comments and
+- Keep this file, `DESIGN.md`, `CLAUDE.md` and `README.md` in sync with the code. Code, comments and
   commit messages in English.
-
-## Migration
-
-The steps, in order. Each one is one commit and is reviewed before the next starts.
-
-1. [x] Rules: `AGENTS.md` and `DESIGN.md`
-2. [ ] Tooling: package.json scripts and dependencies, oxlint, Prettier, husky, lint-staged,
-       stricter tsconfig, `.env.example`
-3. [ ] Tailwind + shadcn base: `globals.css` tokens and base styles, `components.json`,
-       `lib/utils.ts`, fonts and frame in `app/layout.tsx`, `Button`
-4. [ ] Logic with no UI, copied as is: `shared/`, the `*.types`, `*.logic`, `*.state`,
-       `*.api`, `cart.*` and `checkout.schema` files
-5. [ ] Frame: `Header`, `ShopLink`, `Footer`, `Overlay`, `RegisterForm`
-6. [ ] General UI: `LoadBoundary`, `LoadError`, `StatusMessage`, `error.tsx`, `not-found.tsx`
-7. [ ] Products: home page, product page and their components
-8. [ ] Cart page and its components
-9. [ ] Checkout, the shadcn fields and the success page
-10. [ ] Clean-up and checks: remove the demo files, README, the "Before you finish" list

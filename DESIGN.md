@@ -144,10 +144,10 @@ components:
 
 # ShopBoard design
 
-This file is the source of truth for how ShopBoard looks. The tokens above are normative.
-`app/globals.css` turns them into Tailwind theme variables, and every component uses those
-variables through Tailwind classes. The design is the one from ShopBoard v1
-(`src/styles/style.css`); only the way it is written changed.
+This file describes only how ShopBoard looks: the tokens above (normative) and the visual
+rules below. It says nothing about code. How the code applies these tokens (Tailwind,
+`globals.css`, components) is in `AGENTS.md`; how Claude works on the project is in
+`CLAUDE.md`. The design is the one from ShopBoard v1; only the way it is coded changed.
 
 ## Overview
 
@@ -199,22 +199,22 @@ tokens change in dark mode; the others keep their light value:
 `highlight` stays light in dark mode, so the cart count keeps dark ink
 (`highlight-foreground`).
 
-Colors with transparency are written with Tailwind's opacity modifier on the token
-(`bg-background/80` for the header, `ring-primary/20` for the input focus ring), not as new
-tokens.
+A transparent color is an existing token at an opacity, never a new token: the header is
+`background` at 82%, the input focus ring is `primary` at 20%.
 
 ## Typography
 
-Three families, all loaded with `next/font/google` in `app/layout.tsx`:
+Three families, all served by this site (never loaded from a third party at view time):
 
 - **Bricolage Grotesque** (display): `h1`, `h2`, `h3`, the hero title, the logo.
 - **Inter** (body): everything else.
 - **JetBrains Mono**: `code`, `kbd`, `pre`.
 
-Headings use `text-wrap: balance`, paragraphs `text-wrap: pretty`. Prices and counts use
-tabular numbers (`tabular-nums`), so they don't shift as they change.
+Headings balance their lines; paragraphs avoid a single word on the last line. Prices and
+counts use tabular (fixed-width) digits, so they don't shift as they change.
 
-The hero and `h2` sizes are fluid. The tokens give the largest size; the CSS uses:
+The hero and `h2` sizes are fluid: they grow with the screen between a minimum and the
+token's size (minimum, preferred, maximum):
 
 - hero: `clamp(2.4rem, 5.5vw, 4.4rem)`
 - `h2`: `clamp(1.5rem, 2.4vw, 2rem)`
@@ -277,17 +277,16 @@ The dialog's backdrop is `rgb(14 17 22 / 55%)` with a 6px blur.
 - **Dialog**: centered over the blurred backdrop, max 480px wide, pops in.
 - **Toast**: bottom of the screen on mobile, bottom right and 360px wide from `md`.
   Success uses `primary`, error uses `destructive`.
-- **shadcn/ui fields** (checkout): they use the same tokens, so they look like the rest
-  of the app without extra CSS.
+- **Form fields** (checkout and sign-up): look exactly like the inputs above, with the
+  label (`label` type) above the input and the error in `destructive` below it.
 
 ## Do's and Don'ts
 
-- Do use a token through its Tailwind class (`bg-card`, `text-muted-foreground`,
-  `rounded-lg`, `shadow-lift`). Don't write a hex value or an arbitrary color
-  (`bg-[#3b5bfd]`) in a component.
+- Do use a token by its role. Don't introduce a color, size, radius or shadow that is not
+  a token in this file.
 - Do use `primary` for every action and only for actions. Don't use `highlight` for a
   button or a link.
 - Do keep every clickable thing at least 44px. Don't make an icon button smaller.
 - Do check a new component in dark mode. Don't add a color that has no dark value.
 - Do respect reduced motion. Don't add an animation longer than 0.5s.
-- Do add a new token here first, then to `app/globals.css`, then use it.
+- Do add a new token to this file before anyone uses it.
