@@ -67,7 +67,7 @@ export function Header() {
               focusRing,
             )}
             href="/cart"
-            aria-label={`Open cart, ${itemCount} items`}
+            aria-label={`Open cart, ${itemCount} ${itemCount === 1 ? "item" : "items"}`}
           >
             <svg
               viewBox="0 0 24 24"
