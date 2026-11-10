@@ -7,9 +7,10 @@ import { Card } from "@/components/ui/card";
 import { focusRing } from "@/components/ui/focus-ring";
 import { headingVariants } from "@/components/ui/heading";
 import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
-import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { Product } from "../products.types";
+import { ProductArt } from "./product-art";
+import { ProductPrice } from "./product-price";
 
 // The bento rhythm: v1 tinted every 4n+2 card muted and every 5n+3 card soft (5n+3 wins when
 // both match). index is 0-based, so the 2nd card is index 1.
@@ -35,10 +36,7 @@ export const ProductCard = memo(function ProductCard({ product, index }: Product
       tone={getTone(index)}
       className="transition duration-200 focus-within:-translate-y-0.75 focus-within:shadow-lift hover:-translate-y-0.75 hover:shadow-lift motion-safe:animate-rise motion-reduce:transition-none"
     >
-      <div
-        aria-hidden="true"
-        className="mb-3 aspect-4/3 rounded-3xl bg-(image:--product-art) bg-(length:--product-art-size)"
-      />
+      <ProductArt />
       <h3 className={headingVariants({ level: 3 })}>
         {/* Looks like the title, not a blue link; the underline shows on hover and focus. */}
         <Link
@@ -52,9 +50,7 @@ export const ProductCard = memo(function ProductCard({ product, index }: Product
         </Link>
       </h3>
       <Badge variant="category">{product.category}</Badge>
-      <p className="mt-1 mb-3 text-price font-bold tracking-heading tabular-nums">
-        {formatPrice(product.price)}
-      </p>
+      <ProductPrice price={product.price} />
       <AddToCartButton product={product} className="mt-auto self-start" />
     </Card>
   );

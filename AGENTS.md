@@ -80,7 +80,8 @@ app/                              # Routes only (App Router)
 │   ├── error.tsx                 # "We couldn't load the products" + Try again
 │   └── [id]/
 │       ├── page.tsx              # "/products/:id": the product, or notFound()
-│       └── loading.tsx
+│       ├── loading.tsx
+│       └── error.tsx             # "We couldn't load this product" + Try again
 ├── cart/                         # page.tsx · loading.tsx · error.tsx
 └── checkout/
     ├── page.tsx                  # the form at once; the summary in its own <Suspense>
@@ -100,7 +101,8 @@ components/
 features/                         # One folder per feature
 ├── products/                     # products.types · .logic · .state · .api (server only)
 │                                 # · components/ (hero, products-section, product-controls,
-│                                 #   products-content, product-grid, product-card)
+│                                 #   products-content, product-grid, product-card,
+│                                 #   product-art, product-price)
 ├── cart/                         # cart.types · .logic · .storage · .store · .hooks
 │                                 # · components/ (add-to-cart-button, cart-content…)
 ├── checkout/                     # checkout.schema · components/

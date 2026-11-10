@@ -109,7 +109,7 @@ in `AGENTS.md`).
 8. [x] `/` (hero) and `/products`: `page`, `loading`, `error`, filters, product card, empty
        and no-match messages. The products page uses the kit's `Input` (search), `Card`
        (product card) and `Badge` (category), as Task 4 asks
-9. [ ] `/products/[id]`: `notFound()`, `loading`, `AddToCartButton`
+9. [x] `/products/[id]`: `notFound()`, `loading`, `AddToCartButton`
 10. [ ] `/cart`: `page`, `loading`, `error`, cart rows and total
 11. [ ] `/checkout` and `/checkout/success`: the form, the summary in its own `<Suspense>`
 12. [ ] Clean-up and checks: remove the demo files and this section, write the README, run
