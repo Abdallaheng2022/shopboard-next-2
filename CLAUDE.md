@@ -98,7 +98,7 @@ in `AGENTS.md`).
        fonts and `<body>` in `app/layout.tsx`, shadcn `Button`, `headingVariants`
 4. [x] Day 6 structure: `features/`, `lib/api/`, the UI kit in `components/ui/`, route files
        instead of `LoadBoundary`, `/products` as its own route, kebab-case names
-5. [ ] Logic with no UI: `lib/api/` (config, client, errors; no `result.ts`), `lib/format.ts`,
+5. [x] Logic with no UI: `lib/api/` (config, client, errors; no `result.ts`), `lib/format.ts`,
        and `features/*`: the types, logic, state, api, cart store and hooks, checkout schema
 6. [ ] UI kit, reviewed before any page uses it: `input`, `label`, `field`, `card`, `badge`
        from shadcn, adapted; our `select` (the filters' two native selects) and our `modal`
