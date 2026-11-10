@@ -3,9 +3,10 @@
 import { cva } from "class-variance-authority";
 
 export const buttonVariants = cva(
-  // Every button: at least 44px (min-h-tap), pressed = 98%, disabled = half opacity.
+  // Every button: at least 44px (min-h-tap), pressed = 98%, disabled = half opacity, and no
+  // transition for users who asked for reduced motion.
   // not-disabled: (not enabled:) so a <Link>, which is never "enabled", still scales.
-  "inline-flex min-h-tap min-w-tap cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent px-5 leading-none font-semibold no-underline transition duration-150 not-disabled:active:scale-98 disabled:cursor-not-allowed disabled:opacity-50",
+  "inline-flex min-h-tap min-w-tap cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent px-5 leading-none font-semibold no-underline transition duration-150 motion-reduce:transition-none not-disabled:active:scale-98 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {

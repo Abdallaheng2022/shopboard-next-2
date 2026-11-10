@@ -23,8 +23,15 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={`${inter.variable} ${bricolage.variable} ${jetBrainsMono.variable}`}>
-      <body>
+    // scroll-pt-21 (84px) = the 64px header + 20px, so a #link never hides under the header.
+    // motion-safe: smooth scrolling only for users who didn't ask for reduced motion.
+    <html
+      lang="en"
+      className={`${inter.variable} ${bricolage.variable} ${jetBrainsMono.variable} scroll-pt-21 motion-safe:scroll-smooth`}
+    >
+      {/* The page (DESIGN.md "Overview"): background, glows, text color, body line height, and
+          selection colors for every element inside. [text-rendering:…] has no utility. */}
+      <body className="min-h-dvh bg-background page-glows leading-body text-foreground antialiased selection:bg-primary selection:text-primary-foreground [text-rendering:optimizeLegibility]">
         {/* The page column: at most 1240px, centered, with the fluid side padding. */}
         <main className="mx-auto w-full max-w-page px-page">{children}</main>
       </body>

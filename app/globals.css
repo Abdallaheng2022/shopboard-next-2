@@ -1,5 +1,6 @@
-/* globals.css: Tailwind, the DESIGN.md tokens, and the base element styles.
-   Components are styled with utility classes; nothing here styles a component. */
+/* globals.css: only what Tailwind needs to be written in CSS: the import, the DESIGN.md tokens,
+   one custom utility and the element defaults. Every component and the <html> and <body>
+   elements are styled with classes. */
 @import "tailwindcss";
 
 /* 1. The tokens, by role (DESIGN.md "Colors"). Light first, then the dark values. */
@@ -106,31 +107,24 @@
   --text-hero: clamp(2.4rem, 5.5vw, 4.4rem);
   --text-hero--line-height: 1.05;
   --text-lead: clamp(1.05rem, 1.4vw, 1.2rem);
+  --leading-body: 1.6;
 }
 
-/* 4. Base element styles: what every page shares (DESIGN.md "Overview" and "Typography").
-   In @layer base, so any utility class on an element wins over these. */
+/* 4. One custom utility: the page's three soft glows (DESIGN.md "Overview"). Three layered
+   gradients have no Tailwind utility, so @utility makes one class of them: page-glows.
+   Not named bg-*, so tailwind-merge never mistakes it for a background color. */
+@utility page-glows {
+  background-image:
+    radial-gradient(at 12% 8%, rgb(59 91 253 / 22%), transparent 46%),
+    radial-gradient(at 88% 4%, rgb(255 122 89 / 20%), transparent 42%),
+    radial-gradient(at 70% 92%, rgb(59 91 253 / 12%), transparent 50%);
+  background-attachment: fixed;
+}
+
+/* 5. Element defaults that no class can set once: every h1, h2, h3, p, a and code in the app,
+   and the keyboard focus ring on any element. The <html> and <body> styles are classes in
+   app/layout.tsx. In @layer base, so a class on an element always wins over these. */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--spacing-header) + 20px);
-  }
-
-  /* The page with its three soft glows (blue top left, coral top right, blue bottom right). */
-  body {
-    min-height: 100dvh;
-    line-height: 1.6;
-    color: var(--color-foreground);
-    background-color: var(--color-background);
-    background-image:
-      radial-gradient(at 12% 8%, rgb(59 91 253 / 22%), transparent 46%),
-      radial-gradient(at 88% 4%, rgb(255 122 89 / 20%), transparent 42%),
-      radial-gradient(at 70% 92%, rgb(59 91 253 / 12%), transparent 50%);
-    background-attachment: fixed;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
   h1,
   h2,
   h3 {
@@ -172,23 +166,8 @@
     font-family: var(--font-mono);
   }
 
-  ::selection {
-    background: var(--color-primary);
-    color: var(--color-primary-foreground);
-  }
-
   :focus-visible {
     outline: 3px solid var(--color-link);
     outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation: none !important;
-      transition: none !important;
-      scroll-behavior: auto !important;
-    }
   }
 }

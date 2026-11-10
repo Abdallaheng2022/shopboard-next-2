@@ -68,7 +68,7 @@ No `src/` folder: `app/` and the other folders sit at the project root, as
 ```
 app/                          # Routes only: one folder per URL (App Router)
 ├── layout.tsx                # Header + {children} + Footer, fonts, globals.css
-├── globals.css               # Tailwind + the DESIGN.md tokens + shadcn variables + base styles
+├── globals.css               # Tailwind import, DESIGN.md tokens, @utility, element defaults
 ├── page.tsx                  # "/"
 ├── products/[id]/page.tsx    # "/products/:id"
 ├── cart/page.tsx             # "/cart"
@@ -120,6 +120,8 @@ shared/
 - **Only theme values.** `bg-card`, `text-muted-foreground`, `rounded-lg`, `shadow-lift`.
   No arbitrary colors (`bg-[#3b5bfd]`) and no raw hex in a component. An arbitrary value is
   allowed only for a one-off layout value DESIGN.md gives (`grid-cols-[260px_minmax(0,1fr)]`).
+  An arbitrary property (`[text-rendering:optimizeLegibility]`) only for a CSS property that
+  has no utility.
 - **Mobile first.** Unprefixed classes are for small screens; `md:`, `lg:` add to them.
 - **Dark mode follows the system.** Tailwind's default `dark:` variant is the media query;
   the tokens already switch, so components rarely need `dark:`. No `.dark` class.
@@ -129,13 +131,18 @@ shared/
   button looks live in `components/ui/button.ts` as `buttonVariants` (variant `primary`,
   `secondary`, `ghost`; size `md`, `lg`). A `<button>` and a `<Link>` both call it.
 - **A new `@theme` name that tailwind-merge can't guess** (a `text-*` size, a `shadow-*`, a
-  spacing) is added to `extendTailwindMerge` in `lib/utils.ts` too, or `cn()` may drop it.
+  spacing, a `leading-*`) is added to `extendTailwindMerge` in `lib/utils.ts` too, or `cn()` may drop it.
 - **Preflight is on.** Headings, paragraphs and lists have no margin and no size of their own
   (the base layer gives headings their DESIGN.md size). Every gap is set on purpose with
   `gap-*`, `space-y-*` or `m*-*`; compare each page with v1.
-- **What stays in `globals.css`:** the `@import`s, tokens, `@theme`, the base element styles
-  (`body` background glows, headings, links, focus outline, selection, reduced motion) in
-  `@layer base`, and `@keyframes` exposed as `--animate-*` theme variables.
+- **`globals.css` holds only what Tailwind needs in CSS:** the `@import`, the tokens
+  (`:root`, the dark query, `@theme`), custom utilities made with `@utility` (only
+  `page-glows` so far), and in `@layer base` the element defaults no class can set once
+  (`h1`–`h3`, `p`, `a`, `code`, `:focus-visible`). Never a component's styles.
+- **`<html>` and `<body>` are styled with classes** in `app/layout.tsx`, as Tailwind's docs
+  advise for page-wide styles.
+- **Reduced motion is per class, not a global reset:** every animation or transition gets
+  `motion-safe:` or `motion-reduce:` (`motion-reduce:transition-none` on the buttons).
 - **Class order** is sorted by `prettier-plugin-tailwindcss`. Don't sort by hand.
 - Fonts come from `next/font/google` in `app/layout.tsx`; their CSS variables feed
   `--font-display`, `--font-sans` and `--font-mono` in `@theme`. Never a `<link>` to Google.

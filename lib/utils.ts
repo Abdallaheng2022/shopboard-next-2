@@ -14,6 +14,7 @@ const twMerge = extendTailwindMerge({
       spacing: ["tap", "header", "page"],
       container: ["page"],
       font: ["display"],
+      leading: ["body"],
     },
   },
 });
