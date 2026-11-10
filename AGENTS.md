@@ -86,7 +86,8 @@ app/                              # Routes only (App Router)
     ├── page.tsx                  # the form at once; the summary in its own <Suspense>
     └── success/page.tsx          # the thank-you (?name=)
 components/
-├── layout/                       # header.tsx ("use client"), shop-link.tsx, footer.tsx
+├── layout/                       # header.tsx ("use client"), shop-link.tsx, footer.tsx,
+│                                 # page-section.tsx (PageSection, PageTitle)
 └── ui/                           # The UI kit. Knows nothing about products or the cart
     ├── button · input · label · field · card · badge · skeleton (.tsx)
     │                             # from the shadcn CLI, adapted to DESIGN.md
@@ -307,8 +308,8 @@ No effect loads data, calculates a value, or reacts to a click.
   keyboard focus (Tab through every control), both color schemes, the Console, and the three
   API states (`/delay/3000`, `/fail/500`, `/empty`).
 - `grep -rn "fetch(" app components features lib` finds only `lib/api/client.ts`.
-- `grep -rnE "#[0-9a-fA-F]{3,8}\b" app components features` finds no hex outside
-  `app/globals.css`, and `grep -rnE "[a-z]-\[|[\" ]\[[a-z-]+:" app components features` finds
+- `grep -rnE "#[0-9a-fA-F]{3,8}\b" app components features --include=*.ts --include=*.tsx`
+  finds no hex (`app/globals.css` holds the token values, `app/icon.svg` is an image), and `grep -rnE "[a-z]-\[|[\" ]\[[a-z-]+:" app components features` finds
   no `[..]` class.
 - Keep this file, `DESIGN.md`, `CLAUDE.md` and `README.md` in sync with the code. Code,
   comments and commit messages in English.

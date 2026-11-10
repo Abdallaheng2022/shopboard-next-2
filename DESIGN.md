@@ -233,10 +233,11 @@ Inputs use `16px` text, so iOS doesn't zoom in on focus.
 
 - The page content is at most `page-max` (1240px) wide, centered, with a side padding
   (`page`) of `clamp(16px, 4vw, 40px)`.
-- The header is sticky, at least `header` (64px) tall, with a blurred, 82% opaque
-  `background`.
+- The header and the footer hold their content in a 1200px column (`frame`: 1280px minus
+  the 40px side padding). The header is sticky, at least `header` (64px) tall, with a
+  blurred, 82% opaque `background`.
 - Every clickable thing is at least `tap` (44px) tall and wide.
-- Sections have a vertical padding of `clamp(40px, 7vw, 88px)`; the hero
+- Sections have a vertical padding (`section`) of `clamp(40px, 7vw, 88px)`; the hero (`hero`)
   `clamp(56px, 9vw, 112px)`.
 - Mobile first. Breakpoints used: `768px` (`md`), `900px`, `960px`, `1024px` (`lg`).
 - Products page: on `lg` and up, the filters become a sticky 260px sidebar.

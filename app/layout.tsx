@@ -1,8 +1,10 @@
-// layout.tsx: what stays on every page. Step 5 adds the Header and the Footer around {children}.
-// It also loads the three fonts and globals.css.
+// layout.tsx: what stays on every page: the Navbar (Header) and the Footer. The current page goes
+// in {children}. It also loads the three fonts and globals.css.
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import "./globals.css";
 
 // next/font downloads the fonts at build time and serves them from this site: no request to
@@ -34,8 +36,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           and the selection colors (selection: reaches every element inside). Plus the page
           background and its glows (DESIGN.md "Overview"). */}
       <body className="min-h-dvh bg-background bg-(image:--page-glows) bg-fixed leading-body text-pretty text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
+        <Header />
         {/* The page column: at most 1240px, centered, with the fluid side padding. */}
         <main className="mx-auto w-full max-w-page px-page">{children}</main>
+        <Footer />
       </body>
     </html>
   );
