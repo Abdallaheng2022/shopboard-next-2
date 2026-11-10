@@ -1,8 +1,11 @@
 // button.tsx: shadcn/ui's Button (`pnpm dlx shadcn@latest add button`), adapted to DESIGN.md.
-// Kept from the CLI: the structure, data-slot, asChild (Radix Slot) and the variant names.
-// Changed: the classes, to v1's .btn look, and only the variants ShopBoard uses:
-//   default = v1 .btn-primary, outline = v1 .btn-secondary, ghost = v1 .btn-ghost,
-//   size lg = v1 .btn-lg. Removed: destructive, secondary, link, sm, icon (unused).
+// Kept from the CLI: the structure, data-slot and asChild (Radix Slot).
+// Changed: the classes, to DESIGN.md's buttons (v1's .btn look), and the variants, to the
+// Day 6 assignment's names: variant primary | secondary | ghost, size sm | md | lg.
+//   primary = v1 .btn-primary, secondary = v1 .btn-secondary (white, foreground border),
+//   ghost = v1 .btn-ghost; md = v1 .btn, lg = v1 .btn-lg, sm = less padding and smaller
+//   text, still 44px tall (DESIGN.md: every clickable thing is at least 44px).
+// Removed: the CLI's destructive, outline, link and icon variants (not in DESIGN.md).
 // A <Link> that looks like a button: <Button asChild><Link href="/">Shop</Link></Button>.
 import * as React from "react";
 import { Slot } from "radix-ui";
@@ -17,19 +20,20 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground not-disabled:hover:brightness-94",
-        outline: "border-foreground bg-card text-foreground",
+        primary: "bg-primary text-primary-foreground not-disabled:hover:brightness-94",
+        secondary: "border-foreground bg-card text-foreground",
         // Looks like a nav link: the body's weight, a nav link's padding.
         ghost: "px-3 font-normal text-link not-disabled:hover:bg-muted",
       },
       size: {
-        default: "",
+        sm: "px-3 text-sm",
+        md: "",
         lg: "min-h-12 px-6.5 text-base",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "primary",
+      size: "md",
     },
   },
 );

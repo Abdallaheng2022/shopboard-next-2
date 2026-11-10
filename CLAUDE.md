@@ -27,6 +27,24 @@ Abdallah is learning from this migration. He chose "Claude applies, Abdallah rev
 A step is one commit. The message says what changed, where and why, in English.
 Tick the step in the list below in the same commit.
 
+## UI rules (Day 6)
+
+The rules every UI change follows. Each line names the `AGENTS.md` section (imported above)
+that holds the details; change a rule there, not here.
+
+- **Tailwind only:** no CSS file but `globals.css`, no CSS rules, no `@apply` ("Styling").
+- **Tokens only:** every color, radius and font comes from `DESIGN.md` through `@theme`; no
+  hex, no `px`, no `[..]` value in a component ("Styling").
+- **ui is dumb:** a `components/ui` file knows nothing about products or the cart
+  ("Where a file goes").
+- **One source:** a style lives in one kit component and is never copied; a new look is a
+  new variant ("Styling").
+- **Small files:** too long to read at once? Split it ("Styling").
+- **Typed variants:** `cva` + `cn()` like `button.tsx`; a wrong variant is a type error
+  ("TypeScript").
+- **Focus is visible on every control**, hover and dark mode are checked, and every page
+  works at 360, 768 and 1280px ("Styling", "Before you finish").
+
 ## Building a UI kit component (Day 6)
 
 1. Read `components/ui/button.tsx` first and build the same way: `cva` for the variants,
@@ -83,11 +101,14 @@ in `AGENTS.md`).
 5. [ ] Logic with no UI: `lib/api/` (config, client, errors; no `result.ts`), `lib/format.ts`,
        and `features/*`: the types, logic, state, api, cart store and hooks, checkout schema
 6. [ ] UI kit, reviewed before any page uses it: `input`, `label`, `field`, `card`, `badge`
-       from shadcn, adapted; our `modal` (native `<dialog>`: Esc, focus inside, focus back)
+       from shadcn, adapted; our `select` (the filters' two native selects) and our `modal`
+       (native `<dialog>`: Esc closes it, focus stays inside, focus comes back). `badge`
+       variants: the cart count and the category label
 7. [ ] Frame: `header`, `shop-link`, `footer`, the sign-up `modal` with `register-form`;
        `app/not-found.tsx`, `app/error.tsx`, `app/icon.svg`
 8. [ ] `/` (hero) and `/products`: `page`, `loading`, `error`, filters, product card, empty
-       and no-match messages
+       and no-match messages. The products page uses the kit's `Input` (search), `Card`
+       (product card) and `Badge` (category), as Task 4 asks
 9. [ ] `/products/[id]`: `notFound()`, `loading`, `AddToCartButton`
 10. [ ] `/cart`: `page`, `loading`, `error`, cart rows and total
 11. [ ] `/checkout` and `/checkout/success`: the form, the summary in its own `<Suspense>`

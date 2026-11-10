@@ -20,11 +20,11 @@ is styled with Tailwind through our UI kit in `components/ui`.
 
 Each file has one job. Don't repeat a rule in two files: point to the file that owns it.
 
-| File        | Owns                                                        | Read by          |
-| ----------- | ----------------------------------------------------------- | ---------------- |
-| `AGENTS.md` | How the code is written: stack, structure, code rules       | every agent      |
-| `DESIGN.md` | How the app looks: tokens and visual rules. No code in it   | every agent      |
-| `CLAUDE.md` | How Claude Code works here: imports this file, the workflow | Claude Code only |
+| File        | Owns                                                                      | Read by          |
+| ----------- | ------------------------------------------------------------------------- | ---------------- |
+| `AGENTS.md` | How the code is written: stack, structure, code rules                     | every agent      |
+| `DESIGN.md` | How the app looks: tokens and visual rules. No code in it                 | every agent      |
+| `CLAUDE.md` | How Claude works here: imports this file, the workflow, the UI rules list | Claude Code only |
 
 Read before any change: `node_modules/next/dist/docs/` for Next.js (see the block above), and
 `DESIGN.md` before any change a user can see.
@@ -116,8 +116,9 @@ public/                           # files served as they are
 - **The UI kit:** `components/ui/`. A file there is dumb: a Button doesn't know what a cart
   is. It takes props and `className`, and has no data, no feature import and no app state.
 - **From the shadcn CLI:** `pnpm dlx shadcn@latest add <name>` writes it into
-  `components/ui/`. It is our code from then on: adapt its classes and variants to
-  DESIGN.md, delete what we don't use, and say at the top what changed from the CLI's file.
+  `components/ui/`. It is our code from then on: adapt its classes to DESIGN.md, name its
+  variants as DESIGN.md and the assignment do (`primary`, not shadcn's `default`), delete
+  what we don't use, and say at the top what changed from the CLI's file.
 - **Code any part can use with no UI:** `lib/`.
 - **File names:** kebab-case (`product-card.tsx`, `add-to-cart-button.tsx`), as shadcn and
   the course name them. The component inside is PascalCase (`ProductCard`).
@@ -141,8 +142,9 @@ public/                           # files served as they are
   `--page-glows`, used as `bg-(image:--page-glows)`.
 - **Opacity is a modifier, not a token:** `bg-background/80` (header), `ring-primary/20`.
 - **One source for every style.** A class set used twice lives in one `components/ui` file,
-  never copied: shadcn's component first (`Button`: `default`, `outline`, `ghost`, size
-  `lg`; `asChild` styles a `<Link>`), our own `cva` when shadcn has none (`headingVariants`).
+  never copied: shadcn's component first (`Button`: variant `primary` · `secondary` ·
+  `ghost`, size `sm` · `md` · `lg`; `asChild` styles a `<Link>`), our own `cva` when shadcn
+  has none (`headingVariants`).
   A new look is a new variant, not a copied class string.
 - **Small files.** Too long to read at once? Split it.
 - **What children share goes once on the parent tag, if CSS inherits it.** `<body>` sets the
@@ -151,8 +153,10 @@ public/                           # files served as they are
   background, size and outline don't.
 - **Never style children from the parent** (`[&_h1]:…`, `*:…`, `**:…`): those selectors are
   more specific than the child's own classes, so a child could no longer override them.
-- **Every focusable element shows the focus outline** in its own classes
-  (`focus-visible:outline-3 … outline-link`, as in `Button`): focus is not inherited.
+- **Focus is visible on every control**, in the control's own classes (focus is not
+  inherited): buttons, links and checkboxes show DESIGN.md's outline
+  (`focus-visible:outline-3 … outline-link`, as in `Button`); inputs and selects show their
+  ring instead (`primary` border + `ring-primary/20`). Never remove focus without one.
 - **Mobile first.** Unprefixed classes are for small screens; `sm:`, `md:`, `lg:` add to
   them. Check 360, 768 and 1280px.
 - **Dark mode follows the system.** Tailwind's default `dark:` variant is the media query;
@@ -173,9 +177,11 @@ public/                           # files served as they are
 
 - Server by default. `"use client"` only in a file that needs state, effects, browser APIs
   or event handlers, and only on the outermost such component a Server Component renders:
-  `header.tsx`, `shop-link.tsx`, `products-section.tsx`, `add-to-cart-button.tsx`,
-  `cart-content.tsx`, `checkout-content.tsx`, `order-summary.tsx`, `modal.tsx`, and every
-  `error.tsx`. What they import is client code already; it doesn't repeat the directive.
+  `header.tsx`, `products-section.tsx`, `add-to-cart-button.tsx`, `cart-content.tsx`,
+  `checkout-content.tsx`, `order-summary.tsx`, and every `error.tsx`. What they import is
+  client code already and doesn't repeat it (`shop-link.tsx` is inside `header.tsx`).
+- A kit file that needs state or effects carries its own `"use client"` (`modal.tsx`), so
+  any page can use it, as the course's Modal prompt asks.
 - The product page is a Server Component: only its `AddToCartButton` reaches the browser.
 - A Client Component can't import a Server Component, but can show one passed as a prop:
   the checkout page passes the summary to `CheckoutContent` as `summary`.
@@ -283,8 +289,9 @@ Kept from v1, where each one was measured with 5,000 products and a 300-line car
 ## Before you finish
 
 - `pnpm typecheck`, `pnpm lint`, `pnpm format:check` and `pnpm build` pass.
-- `pnpm build && pnpm start`, then check every page at 360, 768 and 1280px, both color
-  schemes, the keyboard focus, the Console, and the three API states.
+- `pnpm build && pnpm start`, then check every page at 360, 768 and 1280px, hover, the
+  keyboard focus (Tab through every control), both color schemes, the Console, and the three
+  API states (`/delay/3000`, `/fail/500`, `/empty`).
 - `grep -rn "fetch(" app components features lib` finds only `lib/api/client.ts`.
 - `grep -rnE "#[0-9a-fA-F]{3,8}\b" app components features` finds no hex outside
   `app/globals.css`, and `grep -rnE "[a-z]-\[|[\" ]\[[a-z-]+:" app components features` finds

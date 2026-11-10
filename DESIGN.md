@@ -52,6 +52,11 @@ typography:
     fontSize: 0.875rem
     fontWeight: 400
     lineHeight: 1.5
+  lead:
+    fontFamily: Inter
+    fontSize: 1.2rem
+    fontWeight: 400
+    lineHeight: 1.6
   label:
     fontFamily: Inter
     fontSize: 0.875rem
@@ -152,7 +157,8 @@ rules below. It says nothing about code. How the code applies these tokens (Tail
 ## Overview
 
 A light, airy shop page. The page is a soft gray with three blurred color glows behind
-everything (blue top left, coral top right, faint blue bottom right). Content sits on white
+everything (blue top left, coral top right, faint blue bottom right), named `page-glows`.
+They keep their light colors in dark mode. Content sits on white
 cards with large rounded corners. There is one action color, blue (`primary`). Coral
 (`highlight`) never means "click me": it only decorates (the cart count, gradients).
 
@@ -218,14 +224,14 @@ token's size (minimum, preferred, maximum):
 
 - hero: `clamp(2.4rem, 5.5vw, 4.4rem)`
 - `h2`: `clamp(1.5rem, 2.4vw, 2rem)`
-- hero text: `clamp(1.05rem, 1.4vw, 1.2rem)`
+- hero text (`lead`): `clamp(1.05rem, 1.4vw, 1.2rem)`
 
 Inputs use `16px` text, so iOS doesn't zoom in on focus.
 
 ## Layout
 
-- The page content is at most `page-max` (1240px) wide, centered, with a side padding of
-  `clamp(16px, 4vw, 40px)`.
+- The page content is at most `page-max` (1240px) wide, centered, with a side padding
+  (`page`) of `clamp(16px, 4vw, 40px)`.
 - The header is sticky, at least `header` (64px) tall, with a blurred, 82% opaque
   `background`.
 - Every clickable thing is at least `tap` (44px) tall and wide.
@@ -260,8 +266,9 @@ The dialog's backdrop is `rgb(14 17 22 / 55%)` with a 6px blur.
 ## Components
 
 - **Buttons**: primary (blue, white text), secondary (white with a `foreground` border),
-  ghost (looks like a nav link, `link` text). All scale to 98% while pressed. A large variant
-  is 48px tall with 26px side padding. Disabled: 50% opacity, `not-allowed` cursor.
+  ghost (looks like a nav link, `link` text). All scale to 98% while pressed. Three sizes:
+  small (12px side padding, `body-sm` text, still 44px tall), medium (44px, 20px side
+  padding) and large (48px tall, 26px side padding). Disabled: 50% opacity, `not-allowed` cursor.
 - **Inputs and selects**: `card` background, `border` border, `rounded.md`. On focus: the
   border turns `primary` and a 4px `primary/20` ring appears. Invalid: `destructive` border.
 - **Product card**: `card` background; every 4n+2 card uses `muted`, every 5n+3 uses
