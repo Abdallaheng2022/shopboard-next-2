@@ -12,7 +12,7 @@ const twMerge = extendTailwindMerge({
       text: ["h1", "h2", "h3", "hero", "lead", "price"],
       shadow: ["lift", "panel", "dialog"],
       spacing: ["tap", "header", "page", "section", "hero", "grid"],
-      container: ["page", "frame", "dialog", "hero-title", "hero-text"],
+      container: ["page-max", "frame", "dialog", "hero-title", "hero-text"],
       font: ["display"],
       leading: ["body"],
       tracking: ["heading", "eyebrow"],

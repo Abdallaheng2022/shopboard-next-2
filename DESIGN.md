@@ -149,10 +149,8 @@ components:
 
 # ShopBoard design
 
-This file describes only how ShopBoard looks: the tokens above (normative) and the visual
-rules below. It says nothing about code. How the code applies these tokens (Tailwind,
-`globals.css`, components) is in `AGENTS.md`; how Claude works on the project is in
-`CLAUDE.md`. The design is the one from ShopBoard v1; only the way it is coded changed.
+How ShopBoard looks: the tokens above (normative) and the visual rules below. No code here
+(that is `AGENTS.md`). The design is ShopBoard v1's.
 
 ## Overview
 

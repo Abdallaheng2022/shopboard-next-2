@@ -33,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="min-h-dvh bg-background bg-(image:--page-glows) bg-fixed leading-body text-pretty text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
         <Header />
         {/* The page column: at most 1240px, centered, with the fluid side padding. */}
-        <main className="mx-auto w-full max-w-page px-page">{children}</main>
+        <main className="mx-auto w-full max-w-page-max px-page">{children}</main>
         <Footer />
       </body>
     </html>
