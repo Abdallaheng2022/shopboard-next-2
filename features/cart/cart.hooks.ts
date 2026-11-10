@@ -1,8 +1,8 @@
 // cart.hooks.ts: how components read and change the cart. Only Client Components call these.
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import type { Product } from "@/features/products/products.types";
-import { addItem, decreaseItem, increaseItem, removeItem } from "./cart.logic";
+import { addItem, decreaseItem, increaseItem, removeItem, removeUnavailable } from "./cart.logic";
 import { getCart, SERVER_CART, subscribe, updateCart } from "./cart.store";
 import type { Cart } from "./cart.types";
 
@@ -55,4 +55,16 @@ const CART_ACTIONS: CartActions = {
 // The actions only. Reading them never subscribes to the cart, so it never causes a re-render.
 export function useCartActions(): CartActions {
   return CART_ACTIONS;
+}
+
+// Deletes the lines whose product the shop no longer sells, once a page has the products
+// (the cart page and the checkout summary). Without it, the header would count them and the
+// checkout could take an order of $0. The saved cart lives outside React, so changing it
+// after the products arrive is an effect.
+export function useRemoveUnavailable(products: readonly Product[]): void {
+  const cart = useCart();
+  useEffect(() => {
+    if (removeUnavailable(cart, products) === cart) return;
+    updateCart((current) => removeUnavailable(current, products));
+  }, [cart, products]);
 }

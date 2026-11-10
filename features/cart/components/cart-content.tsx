@@ -12,7 +12,7 @@ import { Card } from "@/components/ui/card";
 import { StatusMessage } from "@/components/ui/status-message";
 import { ProductPrice } from "@/features/products/components/product-price";
 import type { Product } from "@/features/products/products.types";
-import { useCart, useCartActions, useCartLoaded } from "../cart.hooks";
+import { useCart, useCartActions, useCartLoaded, useRemoveUnavailable } from "../cart.hooks";
 import { getCartLines, getTotal } from "../cart.logic";
 import type { CartAction } from "../cart.types";
 import { CartRow } from "./cart-row";
@@ -25,6 +25,7 @@ export function CartContent({ products }: CartContentProps) {
   const cart = useCart();
   const isLoaded = useCartLoaded();
   const { increase, decrease, remove } = useCartActions();
+  useRemoveUnavailable(products);
 
   // useCallback: CartRow is memo, so onAction must stay the same function between renders.
   // The actions never change, so neither does this.

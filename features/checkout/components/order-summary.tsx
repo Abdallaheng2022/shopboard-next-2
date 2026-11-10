@@ -8,7 +8,7 @@
 import { use } from "react";
 import { Card } from "@/components/ui/card";
 import { headingVariants } from "@/components/ui/heading";
-import { useCart } from "@/features/cart/cart.hooks";
+import { useCart, useRemoveUnavailable } from "@/features/cart/cart.hooks";
 import { getCartLines, getTotal } from "@/features/cart/cart.logic";
 import { ProductPrice } from "@/features/products/components/product-price";
 import type { Product } from "@/features/products/products.types";
@@ -21,6 +21,7 @@ interface OrderSummaryProps {
 export function OrderSummary({ products: productsPromise }: OrderSummaryProps) {
   const products = use(productsPromise);
   const cart = useCart();
+  useRemoveUnavailable(products);
   // Computed in the render, never stored.
   const lines = getCartLines(cart, products);
 

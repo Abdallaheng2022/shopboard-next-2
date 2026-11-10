@@ -144,8 +144,9 @@ One folder per job, and one UI folder only: `components/ui`. No `src/`; `@/*` is
 - Measured in v1 (5,000 products, a 300-line cart), so kept: `memo` on `ProductCard` and
   `CartRow`; `useCallback` on `CartContent`'s `handleAction`; `useMemo` on
   `getCategories(products)` only; the cart actions are one constant object.
-- Effects only for what is outside React: `error-message.tsx` (the `online` event) and
-  `modal.tsx` (`showModal()` / `close()`). No effect loads data or reacts to a click.
+- Effects only for what is outside React: `error-message.tsx` (the `online` event),
+  `modal.tsx` (`showModal()` / `close()`) and `useRemoveUnavailable` in `cart.hooks.ts`
+  (deletes cart lines whose product is no longer sold, once a page has the products). No effect loads data or reacts to a click.
 
 ## The checkout form
 

@@ -62,3 +62,10 @@ export function getCartLines(cart: Cart, products: readonly Product[]): CartLine
     return product === undefined ? [] : [{ product, quantity: item.quantity }];
   });
 }
+
+// Keeps only the lines whose product the shop still sells. Returns the SAME cart when nothing
+// is missing, so the caller can tell that there is nothing to save.
+export function removeUnavailable(cart: Cart, products: readonly Product[]): Cart {
+  const available = cart.filter((item) => findProductById(products, item.productId) !== undefined);
+  return available.length === cart.length ? cart : available;
+}
