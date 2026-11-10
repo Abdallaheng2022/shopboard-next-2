@@ -292,6 +292,13 @@ dark mode.
 - **Skeleton card**: 300px tall, `muted` with a moving light (`skeleton-shine`, a white band at
   45%) that crosses it every 1.4s (`shimmer`).
 - **Cart badge**: a 44px round button; the count sits top right on `highlight`.
+- **Cart line**: a `panel` card per product, 12px apart. The name (like the product card's),
+  the category label and the unit price; then the quantity: small secondary `−` and `+`
+  buttons around the count (tabular digits), a ghost "Remove", and the line total in `price`
+  type. Stacked on mobile; from `md`, one row with the quantity on the right.
+- **Cart total**: a `panel` card under the lines: "Total" and the sum in `price` type, then a
+  large primary "Go to checkout" button. An empty cart is a status message with a primary
+  "Browse products" button.
 - **Dialog**: centered over the blurred backdrop, 480px wide at most and 16px from each screen
   edge on mobile (`dialog`), pops in (`pop`).
 - **Toast**: bottom of the screen on mobile, bottom right and 360px wide from `md`.
