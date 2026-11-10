@@ -9,12 +9,13 @@ import { extendTailwindMerge } from "tailwind-merge";
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: ["hero", "lead"],
+      text: ["h1", "h2", "h3", "hero", "lead"],
       shadow: ["lift", "panel", "dialog"],
       spacing: ["tap", "header", "page"],
       container: ["page"],
       font: ["display"],
       leading: ["body"],
+      tracking: ["heading"],
     },
   },
 });

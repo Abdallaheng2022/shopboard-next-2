@@ -68,7 +68,7 @@ No `src/` folder: `app/` and the other folders sit at the project root, as
 ```
 app/                          # Routes only: one folder per URL (App Router)
 ├── layout.tsx                # Header + {children} + Footer, fonts, globals.css
-├── globals.css               # Tailwind import, DESIGN.md tokens, @utility, element defaults
+├── globals.css               # Tailwind import, DESIGN.md tokens, element defaults (@apply)
 ├── page.tsx                  # "/"
 ├── products/[id]/page.tsx    # "/products/:id"
 ├── cart/page.tsx             # "/cart"
@@ -135,10 +135,12 @@ shared/
 - **Preflight is on.** Headings, paragraphs and lists have no margin and no size of their own
   (the base layer gives headings their DESIGN.md size). Every gap is set on purpose with
   `gap-*`, `space-y-*` or `m*-*`; compare each page with v1.
-- **`globals.css` holds only what Tailwind needs in CSS:** the `@import`, the tokens
-  (`:root`, the dark query, `@theme`), custom utilities made with `@utility` (only
-  `page-glows` so far), and in `@layer base` the element defaults no class can set once
-  (`h1`–`h3`, `p`, `a`, `code`, `:focus-visible`). Never a component's styles.
+- **No plain CSS rules anywhere.** `globals.css` holds only the `@import`, the tokens (`:root`,
+  the dark query, `@theme`) and, in `@layer base`, the element defaults (`h1`–`h3`, `p`, `a`,
+  `code`, `:focus-visible`) written with `@apply` and Tailwind classes. `@apply` is allowed
+  there only: never for a component.
+- **A value no utility has becomes a token**, then a class: the glows are `--page-glows` in
+  `:root`, used as `bg-(image:--page-glows)`.
 - **`<html>` and `<body>` are styled with classes** in `app/layout.tsx`, as Tailwind's docs
   advise for page-wide styles.
 - **Reduced motion is per class, not a global reset:** every animation or transition gets

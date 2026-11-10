@@ -1,6 +1,6 @@
-/* globals.css: only what Tailwind needs to be written in CSS: the import, the DESIGN.md tokens,
-   one custom utility and the element defaults. Every component and the <html> and <body>
-   elements are styled with classes. */
+/* globals.css: the Tailwind import, the DESIGN.md tokens as CSS variables (Tailwind v4 has no
+   JS config: its theme is written here), and the element defaults written with Tailwind
+   classes. No plain CSS rules. */
 @import "tailwindcss";
 
 /* 1. The tokens, by role (DESIGN.md "Colors"). Light first, then the dark values. */
@@ -31,6 +31,12 @@
   --accent-foreground: var(--foreground);
   --input: var(--border);
   --ring: var(--primary);
+
+  /* "Overview": the page's three soft glows, used as bg-(image:--page-glows) on <body>. */
+  --page-glows:
+    radial-gradient(at 12% 8%, rgb(59 91 253 / 22%), transparent 46%),
+    radial-gradient(at 88% 4%, rgb(255 122 89 / 20%), transparent 42%),
+    radial-gradient(at 70% 92%, rgb(59 91 253 / 12%), transparent 50%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -103,71 +109,59 @@
   --spacing-page: clamp(16px, 4vw, 40px);
   --container-page: 1240px;
 
-  /* "Typography": the fluid sizes. Headings get theirs in the base layer below. */
+  /* "Typography": text-h1, text-h2, text-h3 (each with its line height), tracking-heading,
+     the fluid hero and lead sizes, and the body line height. */
+  --text-h1: 2rem;
+  --text-h1--line-height: 1.08;
+  --text-h2: clamp(1.5rem, 2.4vw, 2rem);
+  --text-h2--line-height: 1.15;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.3;
+  --tracking-heading: -0.01em;
   --text-hero: clamp(2.4rem, 5.5vw, 4.4rem);
   --text-hero--line-height: 1.05;
   --text-lead: clamp(1.05rem, 1.4vw, 1.2rem);
   --leading-body: 1.6;
 }
 
-/* 4. One custom utility: the page's three soft glows (DESIGN.md "Overview"). Three layered
-   gradients have no Tailwind utility, so @utility makes one class of them: page-glows.
-   Not named bg-*, so tailwind-merge never mistakes it for a background color. */
-@utility page-glows {
-  background-image:
-    radial-gradient(at 12% 8%, rgb(59 91 253 / 22%), transparent 46%),
-    radial-gradient(at 88% 4%, rgb(255 122 89 / 20%), transparent 42%),
-    radial-gradient(at 70% 92%, rgb(59 91 253 / 12%), transparent 50%);
-  background-attachment: fixed;
-}
-
-/* 5. Element defaults that no class can set once: every h1, h2, h3, p, a and code in the app,
-   and the keyboard focus ring on any element. The <html> and <body> styles are classes in
-   app/layout.tsx. In @layer base, so a class on an element always wins over these. */
+/* 4. Element defaults: every h1, h2, h3, p, a and code in the app, and the focus ring.
+   Written with Tailwind classes (@apply), no plain CSS. In @layer base, so a class on an
+   element always wins over these. */
 @layer base {
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    text-wrap: balance;
+    @apply font-display font-bold tracking-heading text-balance;
   }
 
   h1 {
-    font-size: 2rem;
-    line-height: 1.08;
+    @apply text-h1;
   }
 
   h2 {
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
-    line-height: 1.15;
+    @apply text-h2;
   }
 
   h3 {
-    font-size: 1.125rem;
-    line-height: 1.3;
+    @apply text-h3;
   }
 
   p {
-    text-wrap: pretty;
+    @apply text-pretty;
   }
 
   /* Preflight removes the link color and underline; DESIGN.md keeps both. */
   a {
-    color: var(--color-link);
-    text-decoration-line: underline;
-    text-underline-offset: 3px;
+    @apply text-link underline underline-offset-3;
   }
 
   code,
   pre,
   kbd {
-    font-family: var(--font-mono);
+    @apply font-mono;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-link);
-    outline-offset: 3px;
+    @apply outline-3 outline-offset-3 outline-link outline-solid;
   }
 }

@@ -31,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       {/* The page (DESIGN.md "Overview"): background, glows, text color, body line height, and
           selection colors for every element inside. [text-rendering:…] has no utility. */}
-      <body className="min-h-dvh bg-background page-glows leading-body text-foreground antialiased selection:bg-primary selection:text-primary-foreground [text-rendering:optimizeLegibility]">
+      <body className="min-h-dvh bg-background bg-(image:--page-glows) bg-fixed leading-body text-foreground antialiased selection:bg-primary selection:text-primary-foreground [text-rendering:optimizeLegibility]">
         {/* The page column: at most 1240px, centered, with the fluid side padding. */}
         <main className="mx-auto w-full max-w-page px-page">{children}</main>
       </body>
