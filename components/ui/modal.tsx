@@ -42,7 +42,7 @@ function Modal({ open, onClose, title, titleId, children }: ModalProps) {
       aria-labelledby={titleId}
       onClose={onClose}
       onClick={handleClick}
-      className="m-auto w-dialog rounded-lg border-0 p-0 bg-card text-foreground shadow-dialog backdrop:bg-backdrop/55 backdrop:backdrop-blur-backdrop motion-safe:open:animate-pop"
+      className="m-auto w-dialog rounded-lg border-0 bg-card p-0 text-foreground shadow-dialog backdrop:bg-backdrop/55 backdrop:backdrop-blur-backdrop motion-safe:open:animate-pop"
     >
       {open && (
         <div className="p-6">

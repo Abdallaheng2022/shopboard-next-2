@@ -18,7 +18,7 @@ const buttonVariants = cva(
   // transition for reduced motion, and DESIGN.md's focus outline (focusRing).
   // not-disabled: (not enabled:) so a <Link>, which is never "enabled", still scales.
   [
-    "inline-flex min-h-tap min-w-tap cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent px-5 leading-none font-semibold no-underline transition duration-150 motion-reduce:transition-none not-disabled:active:scale-98 disabled:cursor-not-allowed disabled:opacity-50",
+    "inline-flex min-h-tap min-w-tap cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent px-5 leading-none font-semibold no-underline transition duration-150 not-disabled:active:scale-98 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none",
     focusRing,
   ],
   {
