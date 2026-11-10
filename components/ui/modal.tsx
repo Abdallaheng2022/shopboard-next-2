@@ -4,22 +4,41 @@
 // - When it closes, the browser moves focus back to the element that opened it.
 // The parent owns `open`; every way of closing calls onClose. The content is rendered only
 // while open, so a form inside starts empty each time.
+// Built like button.tsx: cva for the size (DESIGN.md "Dialog": sm 360px, md 480px, lg 640px),
+// cn() for className, typed props. <Modal size="lg" …>; a wrong size is a type error.
 "use client";
 
 import { useEffect, useRef, type MouseEvent, type ReactNode } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { headingVariants } from "./heading";
 
-interface ModalProps {
+const modalVariants = cva(
+  "m-auto rounded-lg border-0 bg-card p-0 text-foreground shadow-dialog backdrop:bg-backdrop/55 backdrop:backdrop-blur-backdrop motion-safe:open:animate-pop",
+  {
+    variants: {
+      size: {
+        sm: "w-dialog-sm",
+        md: "w-dialog-md",
+        lg: "w-dialog-lg",
+      },
+    },
+    defaultVariants: { size: "md" },
+  },
+);
+
+interface ModalProps extends VariantProps<typeof modalVariants> {
   open: boolean;
   onClose: () => void;
   title: string;
   // The id of the title, for aria-labelledby.
   titleId: string;
   children: ReactNode;
+  className?: string;
 }
 
-function Modal({ open, onClose, title, titleId, children }: ModalProps) {
+function Modal({ open, onClose, title, titleId, size, className, children }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   // showModal() and close() are DOM methods outside React, so keeping the dialog in step
@@ -42,7 +61,7 @@ function Modal({ open, onClose, title, titleId, children }: ModalProps) {
       aria-labelledby={titleId}
       onClose={onClose}
       onClick={handleClick}
-      className="m-auto w-dialog rounded-lg border-0 bg-card p-0 text-foreground shadow-dialog backdrop:bg-backdrop/55 backdrop:backdrop-blur-backdrop motion-safe:open:animate-pop"
+      className={cn(modalVariants({ size }), className)}
     >
       {open && (
         <div className="p-6">

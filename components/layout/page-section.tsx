@@ -21,7 +21,7 @@ function PageTitle({ id, level = 1, className, children }: PageTitleProps) {
   const Heading = level === 1 ? "h1" : "h2";
   return (
     <Heading id={id} className={cn(headingVariants({ level }), "mb-5", className)}>
-      <span aria-hidden="true" className="mb-3 block h-title-bar w-8 rounded-xs bg-primary" />
+      <span aria-hidden="true" className="mb-3 block h-title-bar w-8 rounded-bar bg-primary" />
       {children}
     </Heading>
   );

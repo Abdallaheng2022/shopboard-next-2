@@ -83,6 +83,8 @@ rounded:
   sm: 10px
   md: 18px
   lg: 28px
+  art: 24px
+  bar: 2px
   full: 9999px
 spacing:
   xs: 4px
@@ -100,6 +102,9 @@ spacing:
   checkout-form: 480px
   checkout-summary: 360px
   toast: 360px
+  dialog-sm: 360px
+  dialog-md: 480px
+  dialog-lg: 640px
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
@@ -278,7 +283,8 @@ dark mode.
 - `rounded.lg` (28px): product cards, the hero art, dialogs, the sidebar.
 - `rounded.sm` (10px): small inner pieces.
 - `rounded.full`: the cart badge button and its count.
-- The placeholder art inside a card uses `rounded.lg` minus 4px, so it nests.
+- `rounded.art` (24px): the placeholder art inside a card (`lg` minus 4px, so it nests).
+- `rounded.bar` (2px): the bar above a section title.
 
 ## Components
 
@@ -315,8 +321,9 @@ dark mode.
   message; if it fails, the error message with "Try again", and the form keeps working.
 - **Thank-you**: the page title "Thank you, {name}!" ("Thank you!" with no name), one
   `muted-foreground` line saying the order is placed, and a primary "Keep shopping" button.
-- **Dialog**: centered over the blurred backdrop, 480px wide at most and 16px from each screen
-  edge on mobile (`dialog`), pops in (`pop`).
+- **Dialog**: centered over the blurred backdrop, 16px from each screen edge on mobile, and
+  at most `dialog-md` (480px) wide; `dialog-sm` (360px) and `dialog-lg` (640px) for shorter
+  or longer content. Pops in (`pop`).
 - **Toast**: bottom of the screen on mobile, bottom right and 360px wide from `md`.
   Success uses `primary`, error uses `destructive`.
 - **Form fields** (checkout and sign-up): look exactly like the inputs above, with the

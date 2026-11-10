@@ -5,7 +5,7 @@ export function ProductArt() {
   return (
     <div
       aria-hidden="true"
-      className="mb-3 aspect-4/3 rounded-3xl bg-(image:--product-art) bg-(length:--product-art-size)"
+      className="mb-3 aspect-4/3 rounded-art bg-(image:--product-art) bg-(length:--product-art-size)"
     />
   );
 }

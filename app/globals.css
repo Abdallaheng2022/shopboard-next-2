@@ -80,6 +80,9 @@
 /* 2. The tokens as Tailwind utilities. `inline`: the utility uses the variable itself, so a
    class like bg-card follows the dark values above with no dark: variant. */
 @theme inline {
+  /* Only DESIGN.md colors: remove Tailwind's built-in palette, so bg-white or text-gray-500
+     is not a class at all. */
+  --color-*: initial;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -120,9 +123,13 @@
   --blur-backdrop: 6px;
 
   /* "Shapes": rounded-sm, rounded-md, rounded-lg. */
+  /* Only DESIGN.md radii: remove Tailwind's built-in ones (rounded-xs … rounded-4xl). */
+  --radius-*: initial;
   --radius-sm: 10px;
   --radius-md: 18px;
   --radius-lg: 28px;
+  --radius-art: 24px;
+  --radius-bar: 2px;
 
   /* "Elevation & Depth": shadow-lift, shadow-panel, shadow-dialog. */
   --shadow-lift: 0 18px 40px -18px rgb(14 17 22 / 35%);
@@ -137,7 +144,10 @@
   --spacing-hero: clamp(56px, 9vw, 112px);
   --container-page-max: 1240px;
   --container-frame: 1280px;
-  --container-dialog: min(100% - 2rem, 30rem);
+  /* Dialog widths: never wider than the screen minus 16px on each side. */
+  --container-dialog-sm: min(100% - 2rem, 22.5rem);
+  --container-dialog-md: min(100% - 2rem, 30rem);
+  --container-dialog-lg: min(100% - 2rem, 40rem);
   --container-hero-title: 18ch;
   --container-hero-text: 46ch;
   --spacing-grid: clamp(16px, 2vw, 24px);

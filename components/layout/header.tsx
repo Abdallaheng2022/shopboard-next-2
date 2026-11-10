@@ -14,7 +14,7 @@ import { RegisterForm } from "@/features/auth/components/register-form";
 import { useCart } from "@/features/cart/cart.hooks";
 import { getItemCount } from "@/features/cart/cart.logic";
 import { cn } from "@/lib/utils";
-import { navLinkClasses, SHOP_HREF, ShopLink } from "./shop-link";
+import { SHOP_HREF, ShopLink } from "./shop-link";
 
 export function Header() {
   const cart = useCart();
@@ -46,9 +46,9 @@ export function Header() {
                 {/* The prerendered page shows a plain link; the marked one replaces it per visit. */}
                 <Suspense
                   fallback={
-                    <Link className={navLinkClasses} href={SHOP_HREF}>
-                      Shop
-                    </Link>
+                    <Button asChild variant="ghost">
+                      <Link href={SHOP_HREF}>Shop</Link>
+                    </Button>
                   }
                 >
                   <ShopLink />

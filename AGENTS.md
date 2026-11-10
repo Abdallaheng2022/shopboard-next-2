@@ -74,13 +74,16 @@ One folder per job, and one UI folder only: `components/ui`. No `src/`; `@/*` is
   `popover` → `card`, `input` → `border`, `ring` → `primary`.
 - **No CSS rules and no `@apply` anywhere.** `globals.css` holds the `@import`, the tokens and
   the `@keyframes` of the `--animate-*` tokens. No CSS Modules, no `style={{}}` for design.
-- **Tokens only in components:** no hex, no `px`, no `[..]` value or property. A value the
+- **Tokens only in components:** no hex, no `px`, no `[..]` value or property.
+  `globals.css` removes Tailwind's built-in colors and radii (`--color-*: initial`,
+  `--radius-*: initial`), so `bg-white` or `rounded-xl` is not a class at all. A value the
   scale lacks becomes a token (`--page-glows` → `bg-(image:--page-glows)`). So does a
   `DESIGN.md` value that reads badly on the scale: `-translate-y-lift`, not `-translate-y-0.75`. Opacity is a
   modifier: `bg-background/80`.
 - **One source per style:** a class set used twice lives in one kit file. A new look is a
   new variant, never a copied class string. Button: `primary` · `secondary` · `ghost`,
-  `sm` · `md` · `lg`, `asChild` for a `<Link>`.
+  `sm` · `md` · `lg`, `asChild` for a `<Link>`: a link that looks like a button is
+  `<Button asChild>`, never a copy of its classes. Modal: `size` `sm` · `md` · `lg`.
 - **Shared and inherited goes on the parent:** `<body>` sets font, color, line height,
   `text-pretty` and `selection:`. What doesn't inherit (margin, padding, border, background,
   size, outline) goes on the tag itself. **Never style children from a parent**

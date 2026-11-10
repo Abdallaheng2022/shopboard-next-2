@@ -11,6 +11,7 @@ const twMerge = extendTailwindMerge({
     theme: {
       text: ["h1", "h2", "h3", "hero", "lead", "price"],
       shadow: ["lift", "panel", "dialog"],
+      radius: ["sm", "md", "lg", "art", "bar"],
       spacing: [
         "tap",
         "header",
@@ -26,7 +27,9 @@ const twMerge = extendTailwindMerge({
       container: [
         "page-max",
         "frame",
-        "dialog",
+        "dialog-sm",
+        "dialog-md",
+        "dialog-lg",
         "hero-title",
         "hero-text",
         "checkout-form",
