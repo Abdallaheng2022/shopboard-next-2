@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["react", "typescript", "oxc", "nextjs"],
-  "ignorePatterns": [".next", "components/shadcn"],
+  "ignorePatterns": [".next", "components/ui"],
   "rules": {
     "eqeqeq": "error",
     "no-var": "error",

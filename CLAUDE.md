@@ -53,7 +53,7 @@ Tick the step in the list below in the same commit.
 
 - The block between `<!-- BEGIN:nextjs-agent-rules -->` and `<!-- END:nextjs-agent-rules -->`
   in `AGENTS.md`: `next dev` owns it.
-- The structure of a file in `components/shadcn/`: the shadcn CLI writes it. Adapt only its
+- The structure of a file in `components/ui/` (shadcn only): the shadcn CLI writes it. Adapt only its
   classes and variants (see "Where a file goes" in `AGENTS.md`). `lib/utils.ts` is ours.
 - `pnpm-lock.yaml`: pnpm owns it.
 

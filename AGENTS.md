@@ -79,8 +79,9 @@ app/                          # Routes only: one folder per URL (App Router)
 └── icon.svg                  # the favicon
 components/                   # General components: no module owns them
 ├── layout/                   # Header ("use client"), ShopLink ("use client"), Footer
-├── ui/                       # LoadBoundary, LoadError, Overlay, StatusMessage, heading.ts
-└── shadcn/                   # From the shadcn CLI (button, the checkout fields). Not linted
+├── common/                   # Ours, for any feature: LoadBoundary, LoadError, Overlay,
+│                             # StatusMessage, heading.ts
+└── ui/                       # shadcn only, from its CLI (button, the checkout fields). Not linted
 lib/utils.ts                  # cn(): clsx + tailwind-merge, taught our @theme names
 modules/                      # One folder per feature (same files as v1)
 ├── products/                 # types, logic, state, api (server only) · components/
@@ -98,8 +99,10 @@ shared/
   loaders that wait for its data. Everything else lives in a module.
 - **One feature:** `modules/<feature>/`.
 - **The page frame:** `components/layout/`.
-- **Any feature could use it:** `components/ui/`. It knows nothing about products or the cart.
-- **From the shadcn CLI:** `components/shadcn/` (the `ui` alias in `components.json`). Add one
+- **Any feature could use it:** `components/common/`. It knows nothing about products or the
+  cart.
+- **From the shadcn CLI:** `components/ui/`, shadcn's default (the `ui` alias in
+  `components.json`). Only shadcn files go there, so the folder alone says who wrote a file. Add one
   with `pnpm dlx shadcn@latest add <name>`. Then adapt only its classes and variants to
   DESIGN.md, keep its structure and variant names, and say at the top what changed.
 
@@ -126,8 +129,8 @@ shared/
 - **Never style children from the parent** (`[&_h1]:…`, `*:…`, `**:…`): those selectors are
   more specific than the child's own classes, so a child could no longer override them.
 - **Repeated class sets: a shadcn component first, our `cva` second.** shadcn has it →
-  `components/shadcn/` (`Button`: variants `default`, `outline`, `ghost`, size `lg`; with
-  `asChild` it styles a `<Link>`). shadcn has none → a `cva` in `components/ui/`
+  `components/ui/` (`Button`: variants `default`, `outline`, `ghost`, size `lg`; with
+  `asChild` it styles a `<Link>`). shadcn has none → a `cva` in `components/common/`
   (`headingVariants` for `h1`–`h3`). Never a CSS class.
 - **Every focusable element carries the focus outline** in its own classes
   (`focus-visible:outline-3 … outline-link`, as in `Button`): focus is not inherited.
