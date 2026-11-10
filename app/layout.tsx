@@ -25,12 +25,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    // scroll-pt-21 (84px) = the 64px header + 20px, so a #link never hides under the header.
-    // motion-safe: smooth scrolling only for users who didn't ask for reduced motion.
-    <html
-      lang="en"
-      className={`${inter.variable} ${bricolage.variable} ${jetBrainsMono.variable} scroll-pt-21 motion-safe:scroll-smooth`}
-    >
+    <html lang="en" className={`${inter.variable} ${bricolage.variable} ${jetBrainsMono.variable}`}>
       {/* The parent of every page, so what all text shares is set once here and inherited:
           the body font (font-sans, from Preflight), color, line height, text-pretty, smoothing,
           and the selection colors (selection: reaches every element inside). Plus the page

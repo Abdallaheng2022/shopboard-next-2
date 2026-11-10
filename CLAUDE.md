@@ -106,7 +106,7 @@ in `AGENTS.md`).
        variants: the cart count and the category label
 7. [x] Frame: `header`, `shop-link`, `footer`, the sign-up `modal` with `register-form`;
        `app/not-found.tsx`, `app/error.tsx`, `app/icon.svg`
-8. [ ] `/` (hero) and `/products`: `page`, `loading`, `error`, filters, product card, empty
+8. [x] `/` (hero) and `/products`: `page`, `loading`, `error`, filters, product card, empty
        and no-match messages. The products page uses the kit's `Input` (search), `Card`
        (product card) and `Badge` (category), as Task 4 asks
 9. [ ] `/products/[id]`: `notFound()`, `loading`, `AddToCartButton`

@@ -39,11 +39,23 @@
     radial-gradient(at 88% 4%, rgb(255 122 89 / 20%), transparent 42%),
     radial-gradient(at 70% 92%, rgb(59 91 253 / 12%), transparent 50%);
 
-  /* "Components": the product card's dot grid, and the skeleton's moving light. Images and
-     sizes have no theme namespace, so they are plain variables, used as bg-(image:--…) and
-     bg-(length:--…). */
-  --dot-grid: radial-gradient(rgb(14 17 22 / 8%) 1px, transparent 1.4px);
-  --dot-grid-size: 12px 12px;
+  /* "Components": images, sizes and grid templates have no theme namespace, so they are plain
+     variables, used as bg-(image:--…), bg-(length:--…), grid-cols-(--…) and top-(--…). */
+  /* The product card's art: a dot grid 12px apart over a primary-soft → muted gradient. */
+  --product-art:
+    radial-gradient(rgb(14 17 22 / 8%) 1px, transparent 1.4px),
+    linear-gradient(135deg, var(--primary-soft), var(--muted));
+  --product-art-size: 12px 12px, 100% 100%;
+  /* The hero's art: a blue and a coral glow (over bg-muted). */
+  --hero-art:
+    radial-gradient(circle at 30% 30%, rgb(59 91 253 / 90%), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgb(255 122 89 / 85%), transparent 55%);
+  /* "Layout": the hero's two columns, the products sidebar, the filters row, the grid. */
+  --hero-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  --sidebar-columns: 260px minmax(0, 1fr);
+  --filters-columns: 2fr 1fr 1fr;
+  --filters-top: calc(var(--spacing-header) + 16px);
+  --product-grid-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
   --skeleton-shine: linear-gradient(90deg, transparent, rgb(255 255 255 / 45%), transparent);
   --skeleton-shine-size: 200% 100%;
 }
@@ -126,6 +138,11 @@
   --container-page: 1240px;
   --container-frame: 1280px;
   --container-dialog: min(100% - 2rem, 30rem);
+  --container-hero-title: 18ch;
+  --container-hero-text: 46ch;
+  --spacing-grid: clamp(16px, 2vw, 24px);
+  /* The hero splits into two columns from 900px: the hero-split: variant. */
+  --breakpoint-hero-split: 900px;
 
   /* "Typography": text-h1, text-h2, text-h3 (each with its line height), tracking-heading,
      the fluid hero and lead sizes, and the body line height. */
@@ -140,6 +157,8 @@
   --text-hero: clamp(2.4rem, 5.5vw, 4.4rem);
   --text-hero--line-height: 1.05;
   --text-lead: clamp(1.05rem, 1.4vw, 1.2rem);
+  --text-price: 1.25rem;
+  --text-price--line-height: 1.3;
   --leading-body: 1.6;
 
   /* "Overview": motion. Short and quiet; every use is motion-safe:animate-*. */

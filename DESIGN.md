@@ -239,10 +239,16 @@ Inputs use `16px` text, so iOS doesn't zoom in on focus.
 - Every clickable thing is at least `tap` (44px) tall and wide.
 - Sections have a vertical padding (`section`) of `clamp(40px, 7vw, 88px)`; the hero (`hero`)
   `clamp(56px, 9vw, 112px)`.
-- Mobile first. Breakpoints used: `768px` (`md`), `900px`, `960px`, `1024px` (`lg`).
-- Products page: on `lg` and up, the filters become a sticky 260px sidebar.
-- Product grid: `repeat(auto-fill, minmax(min(100%, 210px), 1fr))`, gap
-  `clamp(16px, 2vw, 24px)`.
+- Mobile first. Breakpoints used: `768px` (`md`), `900px` (`hero-split`: the hero gets two
+  columns), `960px`, `1024px` (`lg`).
+- Hero: one column; from `hero-split`, the text on the left (1.1fr) and the art on the right
+  (0.9fr, at least 320px tall), 48px apart (`hero-columns`). The title is at most 18ch wide,
+  the text 46ch.
+- Products page: the three filters stack on mobile, sit in one row from `md` (2fr 1fr 1fr,
+  `filters-columns`), and become a sticky 260px sidebar from `lg` (`sidebar-columns`), 16px
+  under the header.
+- Product grid (`product-grid-columns`): `repeat(auto-fill, minmax(min(100%, 210px), 1fr))`,
+  gap (`grid`) `clamp(16px, 2vw, 24px)`.
 - Checkout: form (max 480px) then summary (max 360px); side by side from 960px.
 
 ## Elevation & Depth
@@ -274,9 +280,12 @@ dark mode.
   padding) and large (48px tall, 26px side padding). Disabled: 50% opacity, `not-allowed` cursor.
 - **Inputs and selects**: `card` background, `border` border, `rounded.md`. On focus: the
   border turns `primary` and a 4px `primary/20` ring appears. Invalid: `destructive` border.
+- **Hero**: the title (`hero` type), the text (`lead`, `muted-foreground`, 16px above and
+  24px below), a large primary button. From `hero-split`, the art on the right: a blue and a
+  coral glow over `muted` (`hero-art`), `rounded.lg`. Each part rises in (`hero`).
 - **Product card**: `card` background; every 4n+2 card uses `muted`, every 5n+3 uses
-  `primary-soft` (a bento rhythm). A 4:3 placeholder art on top: a dot grid (`dot-grid`, 12px apart) over a
-  `primary-soft` → `muted` gradient. Hover or focus inside: lift 3px with the `lift` shadow.
+  `primary-soft` (a bento rhythm). A 4:3 placeholder art on top: a dot grid 12px apart over a
+  `primary-soft` → `muted` gradient (`product-art`). Hover or focus inside: lift 3px with the `lift` shadow.
   The product name looks like a heading, not a blue link; it underlines on hover and focus.
 - **Category label** (`eyebrow`): uppercase, `muted-foreground`.
 - **Section title**: a 32×3px `primary` bar above it.

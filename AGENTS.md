@@ -99,7 +99,8 @@ components/
     └── focus-ring.ts             # ours: the focus outline classes, in one place
 features/                         # One folder per feature
 ├── products/                     # products.types · .logic · .state · .api (server only)
-│                                 # · components/ (product-card, products-section…)
+│                                 # · components/ (hero, products-section, product-controls,
+│                                 #   products-content, product-grid, product-card)
 ├── cart/                         # cart.types · .logic · .storage · .store · .hooks
 │                                 # · components/ (add-to-cart-button, cart-content…)
 ├── checkout/                     # checkout.schema · components/
@@ -109,7 +110,6 @@ lib/
 ├── format.ts                     # formatPrice()
 └── api/                          # config.ts (server address) · client.ts (the only fetch)
                                   # · errors.ts (ApiError)
-public/                           # files served as they are
 ```
 
 ## Where a file goes
@@ -242,14 +242,14 @@ public/                           # files served as they are
 
 Kept from v1, where each one was measured with 5,000 products and a 300-line cart:
 
-| Where             | What                                   | Why                                                           |
-| ----------------- | -------------------------------------- | ------------------------------------------------------------- |
-| `ProductCard`     | `memo`                                 | typing re-renders `ProductsSection`; same `product` → skipped |
-| `cart.hooks.ts`   | actions in one constant object         | a card that only adds never re-renders on a cart change       |
-| `CartRow`         | `memo`                                 | a click on one line re-renders `CartContent`; others skipped  |
-| `CartContent`     | `useCallback` on `handleAction`        | `CartRow` is `memo`, so `onAction` must stay the same         |
-| `ProductsSection` | `useMemo` on `getCategories(products)` | depends on `products` only; typing changes `filters`          |
-| `ProductsSection` | NO `useMemo` on `applyFilters`         | it would never skip                                           |
+| Where             | What                                   | Why                                                                       |
+| ----------------- | -------------------------------------- | ------------------------------------------------------------------------- |
+| `ProductCard`     | `memo`                                 | typing re-renders `ProductsSection`; same `product` and `index` → skipped |
+| `cart.hooks.ts`   | actions in one constant object         | a card that only adds never re-renders on a cart change                   |
+| `CartRow`         | `memo`                                 | a click on one line re-renders `CartContent`; others skipped              |
+| `CartContent`     | `useCallback` on `handleAction`        | `CartRow` is `memo`, so `onAction` must stay the same                     |
+| `ProductsSection` | `useMemo` on `getCategories(products)` | depends on `products` only; typing changes `filters`                      |
+| `ProductsSection` | NO `useMemo` on `applyFilters`         | it would never skip                                                       |
 
 ## Effects
 
