@@ -183,5 +183,5 @@ Two choices differ from the course slides on purpose:
 ## Deploy
 
 1. Push the repository to GitHub.
-2. On [vercel.com/new](https://vercel.com/new), import it. Vercel detects Next.js and pnpm.
+2. (https://vercel.com/abdallaheng2022/shopboard-next-2) Vercel detects Next.js and pnpm.
 3. Optional: set `API_BASE_URL` under Project → Settings → Environment Variables.
