@@ -150,7 +150,9 @@ components:
 # ShopBoard design
 
 How ShopBoard looks: the tokens above (normative) and the visual rules below. No code here
-(that is `AGENTS.md`). The design is ShopBoard v1's.
+(that is `AGENTS.md`). The design is ShopBoard v1's, except four pieces made for v2 from
+these tokens without v1 to compare: "Cart line", "Cart total", "Order summary" and
+"Thank-you" (see "Components").
 
 ## Overview
 
