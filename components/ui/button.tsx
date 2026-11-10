@@ -5,7 +5,8 @@
 //   primary = v1 .btn-primary, secondary = v1 .btn-secondary (white, foreground border),
 //   ghost = v1 .btn-ghost; md = v1 .btn, lg = v1 .btn-lg, sm = less padding and smaller
 //   text, still 44px tall (DESIGN.md: every clickable thing is at least 44px).
-// Removed: the CLI's destructive, outline, link and icon variants (not in DESIGN.md).
+// Removed: the CLI's destructive, outline, link and icon variants (not in DESIGN.md), and
+// the buttonVariants export (nothing outside this file uses it).
 // A <Link> that looks like a button: <Button asChild><Link href="/">Shop</Link></Button>.
 import * as React from "react";
 import { Slot } from "radix-ui";
@@ -64,4 +65,4 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+export { Button };
