@@ -1,6 +1,6 @@
-/* globals.css: the Tailwind import, the DESIGN.md tokens as CSS variables (Tailwind v4 has no
-   JS config: its theme is written here), and the element defaults written with Tailwind
-   classes. No plain CSS rules. */
+/* globals.css: the Tailwind import and the DESIGN.md tokens. Tailwind v4 has no JS config, so
+   its theme is written here. No styles: every element is styled by the classes on its own
+   tag, and what children share sits once on their parent tag. */
 @import "tailwindcss";
 
 /* 1. The tokens, by role (DESIGN.md "Colors"). Light first, then the dark values. */
@@ -122,46 +122,4 @@
   --text-hero--line-height: 1.05;
   --text-lead: clamp(1.05rem, 1.4vw, 1.2rem);
   --leading-body: 1.6;
-}
-
-/* 4. Element defaults: every h1, h2, h3, p, a and code in the app, and the focus ring.
-   Written with Tailwind classes (@apply), no plain CSS. In @layer base, so a class on an
-   element always wins over these. */
-@layer base {
-  h1,
-  h2,
-  h3 {
-    @apply font-display font-bold tracking-heading text-balance;
-  }
-
-  h1 {
-    @apply text-h1;
-  }
-
-  h2 {
-    @apply text-h2;
-  }
-
-  h3 {
-    @apply text-h3;
-  }
-
-  p {
-    @apply text-pretty;
-  }
-
-  /* Preflight removes the link color and underline; DESIGN.md keeps both. */
-  a {
-    @apply text-link underline underline-offset-3;
-  }
-
-  code,
-  pre,
-  kbd {
-    @apply font-mono;
-  }
-
-  :focus-visible {
-    @apply outline-3 outline-offset-3 outline-link outline-solid;
-  }
 }

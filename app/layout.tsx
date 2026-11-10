@@ -29,9 +29,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={`${inter.variable} ${bricolage.variable} ${jetBrainsMono.variable} scroll-pt-21 motion-safe:scroll-smooth`}
     >
-      {/* The page (DESIGN.md "Overview"): background, glows, text color, body line height, and
-          selection colors for every element inside. [text-rendering:…] has no utility. */}
-      <body className="min-h-dvh bg-background bg-(image:--page-glows) bg-fixed leading-body text-foreground antialiased selection:bg-primary selection:text-primary-foreground [text-rendering:optimizeLegibility]">
+      {/* The parent of every page, so what all text shares is set once here and inherited:
+          the body font (font-sans, from Preflight), color, line height, text-pretty, smoothing,
+          and the selection colors (selection: reaches every element inside). Plus the page
+          background and its glows (DESIGN.md "Overview"). [text-rendering:…] has no utility. */}
+      <body className="min-h-dvh bg-background bg-(image:--page-glows) bg-fixed leading-body text-pretty text-foreground antialiased selection:bg-primary selection:text-primary-foreground [text-rendering:optimizeLegibility]">
         {/* The page column: at most 1240px, centered, with the fluid side padding. */}
         <main className="mx-auto w-full max-w-page px-page">{children}</main>
       </body>
