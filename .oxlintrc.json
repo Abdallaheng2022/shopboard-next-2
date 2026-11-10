@@ -4,6 +4,7 @@
   "ignorePatterns": [".next"],
   "rules": {
     "eqeqeq": "error",
+    "no-unused-vars": "error",
     "no-var": "error",
     "prefer-const": "error",
     "react/rules-of-hooks": "error",

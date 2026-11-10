@@ -21,8 +21,6 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": [

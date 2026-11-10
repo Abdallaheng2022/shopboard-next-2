@@ -156,7 +156,9 @@ with `zodResolver`, `defaultValues`, `mode: "onTouched"`, the kit's `Field`/`Lab
 
 ## TypeScript
 
-Strict, plus `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`. No `any`,
+Strict, plus `noFallthroughCasesInSwitch`. Unused imports, variables and parameters
+are oxlint's `no-unused-vars` (an error), not tsconfig's `noUnused*`: those also check the
+files Next.js generates in `.next/`, and `next dev` writes one with unused imports. No `any`,
 `as` or `!`. Outside data (API, localStorage, URL) is `unknown` until a check narrows it. Fixed
 options are unions; a wrong variant is a type error. `pnpm typecheck` runs `next typegen`.
 
