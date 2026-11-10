@@ -27,7 +27,7 @@ typography:
     letterSpacing: -0.01em
   h1:
     fontFamily: Bricolage Grotesque
-    fontSize: 2.5rem
+    fontSize: 2rem
     fontWeight: 700
     lineHeight: 1.08
     letterSpacing: -0.01em

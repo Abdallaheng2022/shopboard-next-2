@@ -53,7 +53,8 @@ Tick the step in the list below in the same commit.
 
 - The block between `<!-- BEGIN:nextjs-agent-rules -->` and `<!-- END:nextjs-agent-rules -->`
   in `AGENTS.md`: `next dev` owns it.
-- `components/shadcn/` and `lib/utils.ts`: the shadcn CLI owns them.
+- `components/shadcn/`: the shadcn CLI owns it. (`lib/utils.ts` is ours: it holds the
+  tailwind-merge names.)
 - `pnpm-lock.yaml`: pnpm owns it.
 
 ## Migration
@@ -64,14 +65,15 @@ that it would be a stale plan file (see "No AI slop" in `AGENTS.md`).
 1. [x] Rules: `AGENTS.md`, `DESIGN.md` and `CLAUDE.md`, one job each
 2. [x] Tooling: package.json scripts and dependencies, oxlint, Prettier (with the Tailwind
        plugin), husky, lint-staged, stricter tsconfig, `.env.example`
-3. [ ] Tailwind + shadcn base: `globals.css` tokens and base styles, `components.json`,
-       `lib/utils.ts`, fonts and frame in `app/layout.tsx`, `Button`
+3. [x] Tailwind + shadcn base: `globals.css` tokens and base styles, `components.json`,
+       `lib/utils.ts`, fonts and frame in `app/layout.tsx`, `buttonVariants`
 4. [ ] Logic with no UI, copied as is: `shared/`, the `*.types`, `*.logic`, `*.state`,
        `*.api`, `cart.*` and `checkout.schema` files
 5. [ ] Frame: `Header`, `ShopLink`, `Footer`, `Overlay`, `RegisterForm`
 6. [ ] General UI: `LoadBoundary`, `LoadError`, `StatusMessage`, `error.tsx`, `not-found.tsx`
 7. [ ] Products: home page, product page and their components
 8. [ ] Cart page and its components
-9. [ ] Checkout, the shadcn fields and the success page
+9. [ ] Checkout, the shadcn fields (with their packages and CSS imports) and the success
+       page
 10. [ ] Clean-up and checks: remove the demo files and this section, write the README, run
         the "Before you finish" list in `AGENTS.md`
