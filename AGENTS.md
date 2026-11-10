@@ -75,7 +75,8 @@ One folder per job, and one UI folder only: `components/ui`. No `src/`; `@/*` is
 - **No CSS rules and no `@apply` anywhere.** `globals.css` holds the `@import`, the tokens and
   the `@keyframes` of the `--animate-*` tokens. No CSS Modules, no `style={{}}` for design.
 - **Tokens only in components:** no hex, no `px`, no `[..]` value or property. A value the
-  scale lacks becomes a token (`--page-glows` → `bg-(image:--page-glows)`). Opacity is a
+  scale lacks becomes a token (`--page-glows` → `bg-(image:--page-glows)`). So does a
+  `DESIGN.md` value that reads badly on the scale: `-translate-y-lift`, not `-translate-y-0.75`. Opacity is a
   modifier: `bg-background/80`.
 - **One source per style:** a class set used twice lives in one kit file. A new look is a
   new variant, never a copied class string. Button: `primary` · `secondary` · `ghost`,

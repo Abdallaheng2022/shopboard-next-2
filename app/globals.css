@@ -141,6 +141,14 @@
   --container-hero-title: 18ch;
   --container-hero-text: 46ch;
   --spacing-grid: clamp(16px, 2vw, 24px);
+  /* Named so the class says what it is: -translate-y-lift, h-title-bar, px-input-x. */
+  --spacing-lift: 3px;
+  --spacing-title-bar: 3px;
+  --spacing-input-x: 14px;
+  --spacing-input-y: 10px;
+  --container-checkout-form: 480px;
+  --container-checkout-summary: 360px;
+  --container-toast: 360px;
   /* The hero splits into two columns from 900px: the hero-split: variant. */
   --breakpoint-hero-split: 900px;
   /* The checkout form and summary sit side by side from 960px: the checkout-split: variant. */

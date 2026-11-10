@@ -34,7 +34,7 @@ export const ProductCard = memo(function ProductCard({ product, index }: Product
     <Card
       layout="tile"
       tone={getTone(index)}
-      className="transition duration-200 focus-within:-translate-y-0.75 focus-within:shadow-lift hover:-translate-y-0.75 hover:shadow-lift motion-safe:animate-rise motion-reduce:transition-none"
+      className="transition duration-200 focus-within:-translate-y-lift focus-within:shadow-lift hover:-translate-y-lift hover:shadow-lift motion-safe:animate-rise motion-reduce:transition-none"
     >
       <ProductArt />
       <h3 className={headingVariants({ level: 3 })}>

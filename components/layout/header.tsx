@@ -100,7 +100,7 @@ export function Header() {
       {welcomeName !== "" && (
         // DESIGN.md "Toast": bottom of the screen on mobile, bottom right and 360px from md.
         <ul
-          className="pointer-events-none fixed inset-x-4 bottom-4 z-50 grid gap-2 md:left-auto md:w-90"
+          className="pointer-events-none fixed inset-x-4 bottom-4 z-50 grid gap-2 md:left-auto md:w-toast"
           role="status"
         >
           <li className="pointer-events-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-md bg-primary px-4 py-3 text-primary-foreground shadow-dialog motion-safe:animate-slide-up">

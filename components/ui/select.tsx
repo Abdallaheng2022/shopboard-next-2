@@ -15,7 +15,7 @@ function Select({ className, children, ...props }: React.ComponentProps<"select"
       <svg
         viewBox="0 0 12 8"
         aria-hidden="true"
-        className="pointer-events-none absolute end-3.5 top-1/2 h-2 w-3 -translate-y-1/2 text-muted-foreground"
+        className="pointer-events-none absolute end-input-x top-1/2 h-2 w-3 -translate-y-1/2 text-muted-foreground"
       >
         <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" />
       </svg>

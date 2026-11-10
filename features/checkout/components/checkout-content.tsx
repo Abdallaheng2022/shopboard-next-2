@@ -74,7 +74,7 @@ export function CheckoutContent({ summary }: CheckoutContentProps) {
       // DESIGN.md "Layout": the form then the summary; side by side from checkout-split.
       <div className="grid gap-8 checkout-split:flex checkout-split:items-start">
         {/* noValidate: the Zod rules give the messages, not the browser's bubbles. */}
-        <form className="w-full max-w-120" noValidate onSubmit={handleSubmit(placeOrder)}>
+        <form className="w-full max-w-checkout-form" noValidate onSubmit={handleSubmit(placeOrder)}>
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="checkout-name">Full name</FieldLabel>
@@ -117,7 +117,7 @@ export function CheckoutContent({ summary }: CheckoutContentProps) {
             </Button>
           </FieldGroup>
         </form>
-        <div className="w-full max-w-90">{summary}</div>
+        <div className="w-full max-w-checkout-summary">{summary}</div>
       </div>
     );
   }

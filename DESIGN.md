@@ -93,6 +93,13 @@ spacing:
   tap: 44px
   header: 64px
   page-max: 1240px
+  lift: 3px
+  title-bar: 3px
+  input-x: 14px
+  input-y: 10px
+  checkout-form: 480px
+  checkout-summary: 360px
+  toast: 360px
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
@@ -117,7 +124,7 @@ components:
     backgroundColor: "{colors.card}"
     textColor: "{colors.foreground}"
     rounded: "{rounded.md}"
-    padding: 10px 14px
+    padding: "{spacing.input-y} {spacing.input-x}"
     height: "{spacing.tap}"
   product-card:
     backgroundColor: "{colors.card}"

@@ -8,7 +8,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export const inputClasses =
-  "min-h-tap w-full min-w-0 rounded-md border border-border bg-card px-3.5 py-2.5 text-base text-foreground transition duration-150 outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive motion-reduce:transition-none";
+  "min-h-tap w-full min-w-0 rounded-md border border-border bg-card px-input-x py-input-y text-base text-foreground transition duration-150 outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive motion-reduce:transition-none";
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return <input type={type} data-slot="input" className={cn(inputClasses, className)} {...props} />;
