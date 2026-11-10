@@ -162,8 +162,9 @@ They keep their light colors in dark mode. Content sits on white
 cards with large rounded corners. There is one action color, blue (`primary`). Coral
 (`highlight`) never means "click me": it only decorates (the cart count, gradients).
 
-Motion is short and quiet: things rise 10px and fade in, cards lift 3px on hover. Everything
-stops when the user asks for reduced motion.
+Motion is short and quiet: things rise 10px and fade in (`rise`, 0.45s; the hero's `hero`,
+0.5s), dialogs pop in (`pop`, 0.22s), toasts slide up (`slide-up`, 0.24s), cards lift 3px on
+hover. Everything stops when the user asks for reduced motion.
 
 ## Colors
 
@@ -253,7 +254,8 @@ Three shadows, all soft and pushed down:
 | `panel`  | `0 8px 24px -16px rgb(14 17 22 / 35%)`  | the filters sidebar        |
 | `dialog` | `0 30px 80px -20px rgb(0 0 0 / 45%)`    | the sign-up dialog, toasts |
 
-The dialog's backdrop is `rgb(14 17 22 / 55%)` with a 6px blur.
+The dialog's backdrop (`backdrop`) is `#0E1116` at 55% with a 6px blur. It keeps this value in
+dark mode.
 
 ## Shapes
 
@@ -272,16 +274,18 @@ The dialog's backdrop is `rgb(14 17 22 / 55%)` with a 6px blur.
 - **Inputs and selects**: `card` background, `border` border, `rounded.md`. On focus: the
   border turns `primary` and a 4px `primary/20` ring appears. Invalid: `destructive` border.
 - **Product card**: `card` background; every 4n+2 card uses `muted`, every 5n+3 uses
-  `primary-soft` (a bento rhythm). A 4:3 placeholder art on top: a dot grid over a
+  `primary-soft` (a bento rhythm). A 4:3 placeholder art on top: a dot grid (`dot-grid`, 12px apart) over a
   `primary-soft` → `muted` gradient. Hover or focus inside: lift 3px with the `lift` shadow.
   The product name looks like a heading, not a blue link; it underlines on hover and focus.
 - **Category label** (`eyebrow`): uppercase, `muted-foreground`.
 - **Section title**: a 32×3px `primary` bar above it.
 - **Status and empty messages**: dashed `border`, `card` background, centered
   `muted-foreground` text.
-- **Skeleton card**: 300px tall, `muted` with a moving light shimmer.
+- **Skeleton card**: 300px tall, `muted` with a moving light (`skeleton-shine`, a white band at
+  45%) that crosses it every 1.4s (`shimmer`).
 - **Cart badge**: a 44px round button; the count sits top right on `highlight`.
-- **Dialog**: centered over the blurred backdrop, max 480px wide, pops in.
+- **Dialog**: centered over the blurred backdrop, 480px wide at most and 16px from each screen
+  edge on mobile (`dialog`), pops in (`pop`).
 - **Toast**: bottom of the screen on mobile, bottom right and 360px wide from `md`.
   Success uses `primary`, error uses `destructive`.
 - **Form fields** (checkout and sign-up): look exactly like the inputs above, with the

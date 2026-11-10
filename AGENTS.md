@@ -88,10 +88,14 @@ app/                              # Routes only (App Router)
 components/
 ├── layout/                       # header.tsx ("use client"), shop-link.tsx, footer.tsx
 └── ui/                           # The UI kit. Knows nothing about products or the cart
-    ├── button.tsx · input.tsx · label.tsx · field.tsx · card.tsx · badge.tsx
+    ├── button · input · label · field · card · badge · skeleton (.tsx)
     │                             # from the shadcn CLI, adapted to DESIGN.md
+    ├── select.tsx                # ours: a native <select> that looks like Input
     ├── modal.tsx                 # ours: native <dialog>
-    └── heading.ts                # ours: headingVariants for h1–h3
+    ├── status-message.tsx        # ours: empty, no-match and error messages
+    ├── error-message.tsx         # ours: what every error.tsx shows ("Try again")
+    ├── heading.ts                # ours: headingVariants for h1–h3
+    └── focus-ring.ts             # ours: the focus outline classes, in one place
 features/                         # One folder per feature
 ├── products/                     # products.types · .logic · .state · .api (server only)
 │                                 # · components/ (product-card, products-section…)
@@ -134,7 +138,8 @@ public/                           # files served as they are
   DESIGN.md doesn't have are aliases in `globals.css`, never new colors: `secondary` and
   `accent` → `muted`, `popover` → `card`, `input` → `border`, `ring` → `primary`.
 - **No CSS rules, no `@apply`, anywhere.** `globals.css` holds only the `@import` and the
-  tokens. Every element is styled by the classes on its own tag. No CSS Modules, no
+  tokens (and the `@keyframes` of the `--animate-*` tokens, which Tailwind keeps inside
+  `@theme`). Every element is styled by the classes on its own tag. No CSS Modules, no
   `style={{}}` for design, no CSS file but `globals.css`.
 - **Tokens only.** No hex, no `px`, no `[..]` value in a component: only the Tailwind scale
   and our theme names (`bg-card`, `rounded-lg`, `shadow-lift`, `min-h-tap`, `px-6.5`). A
@@ -155,7 +160,7 @@ public/                           # files served as they are
   more specific than the child's own classes, so a child could no longer override them.
 - **Focus is visible on every control**, in the control's own classes (focus is not
   inherited): buttons, links and checkboxes show DESIGN.md's outline
-  (`focus-visible:outline-3 … outline-link`, as in `Button`); inputs and selects show their
+  (`focusRing` from `components/ui/focus-ring.ts`); inputs and selects show their
   ring instead (`primary` border + `ring-primary/20`). Never remove focus without one.
 - **Mobile first.** Unprefixed classes are for small screens; `sm:`, `md:`, `lg:` add to
   them. Check 360, 768 and 1280px.
@@ -244,6 +249,15 @@ Kept from v1, where each one was measured with 5,000 products and a 300-line car
 | `CartContent`     | `useCallback` on `handleAction`        | `CartRow` is `memo`, so `onAction` must stay the same         |
 | `ProductsSection` | `useMemo` on `getCategories(products)` | depends on `products` only; typing changes `filters`          |
 | `ProductsSection` | NO `useMemo` on `applyFilters`         | it would never skip                                           |
+
+## Effects
+
+| Effect                         | Where               | Outside React | Dependencies            |
+| ------------------------------ | ------------------- | ------------- | ----------------------- |
+| listen to `online`, then retry | `error-message.tsx` | the browser   | `[retry]`, with cleanup |
+| `showModal()` / `close()`      | `modal.tsx`         | the DOM       | `[open]`                |
+
+No effect loads data, calculates a value, or reacts to a click.
 
 ## Navigation
 

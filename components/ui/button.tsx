@@ -11,12 +11,16 @@ import * as React from "react";
 import { Slot } from "radix-ui";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { focusRing } from "./focus-ring";
 
 const buttonVariants = cva(
   // Every button: at least 44px (min-h-tap), pressed = 98%, disabled = half opacity, no
-  // transition for reduced motion, and DESIGN.md's focus outline (3px, link color).
+  // transition for reduced motion, and DESIGN.md's focus outline (focusRing).
   // not-disabled: (not enabled:) so a <Link>, which is never "enabled", still scales.
-  "inline-flex min-h-tap min-w-tap cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent px-5 leading-none font-semibold no-underline transition duration-150 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-link focus-visible:outline-solid motion-reduce:transition-none not-disabled:active:scale-98 disabled:cursor-not-allowed disabled:opacity-50",
+  [
+    "inline-flex min-h-tap min-w-tap cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent px-5 leading-none font-semibold no-underline transition duration-150 motion-reduce:transition-none not-disabled:active:scale-98 disabled:cursor-not-allowed disabled:opacity-50",
+    focusRing,
+  ],
   {
     variants: {
       variant: {

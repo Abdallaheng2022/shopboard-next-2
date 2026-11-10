@@ -1,6 +1,7 @@
-/* globals.css: the Tailwind import and the DESIGN.md tokens. Tailwind v4 has no JS config, so
-   its theme is written here. No styles: every element is styled by the classes on its own
-   tag, and what children share sits once on their parent tag. */
+/* globals.css: the Tailwind import and the DESIGN.md tokens (and the keyframes of the --animate-*
+   tokens, which Tailwind keeps inside @theme). Tailwind v4 has no JS config, so its theme is
+   written here. No styles: every element is styled by the classes on its own tag, and what
+   children share sits once on their parent tag. */
 @import "tailwindcss";
 
 /* 1. The tokens, by role (DESIGN.md "Colors"). Light first, then the dark values. */
@@ -37,6 +38,14 @@
     radial-gradient(at 12% 8%, rgb(59 91 253 / 22%), transparent 46%),
     radial-gradient(at 88% 4%, rgb(255 122 89 / 20%), transparent 42%),
     radial-gradient(at 70% 92%, rgb(59 91 253 / 12%), transparent 50%);
+
+  /* "Components": the product card's dot grid, and the skeleton's moving light. Images and
+     sizes have no theme namespace, so they are plain variables, used as bg-(image:--…) and
+     bg-(length:--…). */
+  --dot-grid: radial-gradient(rgb(14 17 22 / 8%) 1px, transparent 1.4px);
+  --dot-grid-size: 12px 12px;
+  --skeleton-shine: linear-gradient(90deg, transparent, rgb(255 255 255 / 45%), transparent);
+  --skeleton-shine-size: 200% 100%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -93,6 +102,11 @@
 
 /* 3. The other DESIGN.md tokens. They hold fixed values, so a plain @theme is enough. */
 @theme {
+  /* "Elevation & Depth": the dialog's backdrop color. It keeps its value in dark mode, so it
+     is a fixed color, not a role: bg-backdrop/55 with backdrop-blur-backdrop. */
+  --color-backdrop: #0e1116;
+  --blur-backdrop: 6px;
+
   /* "Shapes": rounded-sm, rounded-md, rounded-lg. */
   --radius-sm: 10px;
   --radius-md: 18px;
@@ -108,6 +122,7 @@
   --spacing-header: 64px;
   --spacing-page: clamp(16px, 4vw, 40px);
   --container-page: 1240px;
+  --container-dialog: min(100% - 2rem, 30rem);
 
   /* "Typography": text-h1, text-h2, text-h3 (each with its line height), tracking-heading,
      the fluid hero and lead sizes, and the body line height. */
@@ -118,8 +133,46 @@
   --text-h3: 1.125rem;
   --text-h3--line-height: 1.3;
   --tracking-heading: -0.01em;
+  --tracking-eyebrow: 0.08em;
   --text-hero: clamp(2.4rem, 5.5vw, 4.4rem);
   --text-hero--line-height: 1.05;
   --text-lead: clamp(1.05rem, 1.4vw, 1.2rem);
   --leading-body: 1.6;
+
+  /* "Overview": motion. Short and quiet; every use is motion-safe:animate-*. */
+  --animate-rise: rise 0.45s ease both;
+  --animate-hero: rise 0.5s ease both;
+  --animate-pop: pop 0.22s ease both;
+  --animate-slide-up: slide-up 0.24s ease both;
+  --animate-shimmer: shimmer 1.4s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: 150% 0;
+    }
+    to {
+      background-position: -150% 0;
+    }
+  }
 }

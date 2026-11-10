@@ -100,7 +100,7 @@ in `AGENTS.md`).
        instead of `LoadBoundary`, `/products` as its own route, kebab-case names
 5. [x] Logic with no UI: `lib/api/` (config, client, errors; no `result.ts`), `lib/format.ts`,
        and `features/*`: the types, logic, state, api, cart store and hooks, checkout schema
-6. [ ] UI kit, reviewed before any page uses it: `input`, `label`, `field`, `card`, `badge`
+6. [x] UI kit, reviewed before any page uses it: `input`, `label`, `field`, `card`, `badge`
        from shadcn, adapted; our `select` (the filters' two native selects) and our `modal`
        (native `<dialog>`: Esc closes it, focus stays inside, focus comes back). `badge`
        variants: the cart count and the category label
