@@ -143,6 +143,8 @@
   --spacing-grid: clamp(16px, 2vw, 24px);
   /* The hero splits into two columns from 900px: the hero-split: variant. */
   --breakpoint-hero-split: 900px;
+  /* The checkout form and summary sit side by side from 960px: the checkout-split: variant. */
+  --breakpoint-checkout-split: 960px;
 
   /* "Typography": text-h1, text-h2, text-h3 (each with its line height), tracking-heading,
      the fluid hero and lead sizes, and the body line height. */

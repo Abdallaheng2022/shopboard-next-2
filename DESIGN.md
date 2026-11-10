@@ -238,7 +238,7 @@ Inputs use `16px` text, so iOS doesn't zoom in on focus.
 - Sections have a vertical padding (`section`) of `clamp(40px, 7vw, 88px)`; the hero (`hero`)
   `clamp(56px, 9vw, 112px)`.
 - Mobile first. Breakpoints used: `768px` (`md`), `900px` (`hero-split`: the hero gets two
-  columns), `960px`, `1024px` (`lg`).
+  columns), `960px` (`checkout-split`), `1024px` (`lg`).
 - Hero: one column; from `hero-split`, the text on the left (1.1fr) and the art on the right
   (0.9fr, at least 320px tall), 48px apart (`hero-columns`). The title is at most 18ch wide,
   the text 46ch.
@@ -247,7 +247,8 @@ Inputs use `16px` text, so iOS doesn't zoom in on focus.
   under the header.
 - Product grid (`product-grid-columns`): `repeat(auto-fill, minmax(min(100%, 210px), 1fr))`,
   gap (`grid`) `clamp(16px, 2vw, 24px)`.
-- Checkout: form (max 480px) then summary (max 360px); side by side from 960px.
+- Checkout: form (max 480px) then summary (max 360px); side by side, 32px apart, from
+  `checkout-split`.
 
 ## Elevation & Depth
 
@@ -299,6 +300,12 @@ dark mode.
 - **Cart total**: a `panel` card under the lines: "Total" and the sum in `price` type, then a
   large primary "Go to checkout" button. An empty cart is a status message with a primary
   "Browse products" button.
+- **Order summary** (checkout): a `panel` card titled "Order summary" (`h3`): one row per
+  line, the name and quantity on the left, the line total on the right (tabular digits),
+  then a `border` divider and "Total" with the sum in `price` type. While it loads, a status
+  message; if it fails, the error message with "Try again", and the form keeps working.
+- **Thank-you**: the page title "Thank you, {name}!" ("Thank you!" with no name), one
+  `muted-foreground` line saying the order is placed, and a primary "Keep shopping" button.
 - **Dialog**: centered over the blurred backdrop, 480px wide at most and 16px from each screen
   edge on mobile (`dialog`), pops in (`pop`).
 - **Toast**: bottom of the screen on mobile, bottom right and 360px wide from `md`.

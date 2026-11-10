@@ -2,7 +2,7 @@
 // No React, no DOM and no localStorage here: data in, data out.
 import { findProductById } from "@/features/products/products.logic";
 import type { Product } from "@/features/products/products.types";
-import type { Cart } from "./cart.types";
+import type { Cart, CartLine } from "./cart.types";
 
 // How much one click on + or − changes a quantity.
 const QUANTITY_STEP = 1;
@@ -52,4 +52,13 @@ export function getTotal(cart: Cart, products: readonly Product[]): number {
     const product = findProductById(products, item.productId);
     return product === undefined ? total : total + product.price * item.quantity;
   }, 0);
+}
+
+// Each cart line with its product, for the cart page and the order summary. A line whose
+// product the shop no longer sells is left out (getTotal() counts it as 0 too).
+export function getCartLines(cart: Cart, products: readonly Product[]): CartLine[] {
+  return cart.flatMap((item) => {
+    const product = findProductById(products, item.productId);
+    return product === undefined ? [] : [{ product, quantity: item.quantity }];
+  });
 }

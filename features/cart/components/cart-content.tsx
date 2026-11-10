@@ -11,10 +11,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { StatusMessage } from "@/components/ui/status-message";
 import { ProductPrice } from "@/features/products/components/product-price";
-import { findProductById } from "@/features/products/products.logic";
 import type { Product } from "@/features/products/products.types";
 import { useCart, useCartActions, useCartLoaded } from "../cart.hooks";
-import { getTotal } from "../cart.logic";
+import { getCartLines, getTotal } from "../cart.logic";
 import type { CartAction } from "../cart.types";
 import { CartRow } from "./cart-row";
 
@@ -46,12 +45,8 @@ export function CartContent({ products }: CartContentProps) {
     [increase, decrease, remove],
   );
 
-  // Computed in the render, never stored: each cart line with its product. A line whose
-  // product the shop no longer sells is not shown, and getTotal() counts it as 0.
-  const lines = cart.flatMap((item) => {
-    const product = findProductById(products, item.productId);
-    return product === undefined ? [] : [{ product, quantity: item.quantity }];
-  });
+  // Computed in the render, never stored.
+  const lines = getCartLines(cart, products);
 
   return (
     <PageSection aria-labelledby="cart-title">

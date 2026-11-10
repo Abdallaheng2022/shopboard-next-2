@@ -72,5 +72,5 @@ Delete this section in step 12 (then it is a stale plan, see "No AI slop").
 8. [x] `/` and `/products`: page, loading, error, filters, card (Input, Card, Badge)
 9. [x] `/products/[id]`: `notFound()`, loading, error, `AddToCartButton`
 10. [x] `/cart`: page, loading, error, cart rows and total
-11. [ ] `/checkout` and `/checkout/success`: the form, the summary in its own `<Suspense>`
+11. [x] `/checkout` and `/checkout/success`: the form, the summary in its own `<Suspense>`
 12. [ ] Clean-up: demo files, this section, README, "Before you finish"; Abdallah deploys

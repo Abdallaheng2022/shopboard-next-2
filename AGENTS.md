@@ -98,7 +98,8 @@ One folder per job, and one UI folder only: `components/ui`. No `src/`; `@/*` is
 - Server by default. `"use client"` only on the outermost component that needs state,
   effects, browser APIs or handlers: `header.tsx`, `products-section.tsx`,
   `add-to-cart-button.tsx`, `cart-content.tsx`, `checkout-content.tsx`, `order-summary.tsx`,
-  every `error.tsx`, and kit files with their own state (`modal.tsx`). Files they import
+  every `error.tsx`, and kit files with their own state (`modal.tsx`, `error-message.tsx`,
+  `error-boundary.tsx`). Files they import
   don't repeat it.
 - A Client Component can't import a Server Component but can show one passed as a prop (the
   checkout page passes the summary to `CheckoutContent`).
@@ -116,7 +117,11 @@ One folder per job, and one UI folder only: `components/ui`. No `src/`; `@/*` is
   a fixed message, "Try again" calls `retry()`; never `error.message`, which production
   replaces; don't log it again). **Missing** is `notFound()` (`/products/abc`,
   `/products/99999`). An empty store, "no match" or an empty cart are messages, not errors.
-- **One part waits, the page doesn't:** the checkout summary has its own `<Suspense>`.
+- **One part waits or fails, the page doesn't:** the checkout page calls `loadProducts()`
+  without `await` and passes the Promise down; `OrderSummary` reads it with `use()` inside
+  its own `<Suspense>` and the kit's `ErrorBoundary` (Next.js's `catchError`). The form
+  shows at once and keeps working if the summary fails. `<Suspense>` alone doesn't catch
+  errors.
 - `params` are Promises (`await props.params`), typed with `PageProps<"/products/[id]">`.
   Read the URL (`usePathname`) only inside `<Suspense>`.
 - Links the user clicks are `<Link>`; a move the code decides is `useRouter()`
